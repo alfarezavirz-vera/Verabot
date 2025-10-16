@@ -1,7 +1,7 @@
 export default {
-  name: "menu",
+  name: "menu2",
   category: "utility",
-  command: ["menu"],
+  command: ["menu2"],
   run: async (conn, m, {
     Func
   }) => {
@@ -42,31 +42,10 @@ export default {
       for (let category of Object.keys(grouped)) {
         mani += `╭─❏ *${category.toUpperCase()}*\n` +
           `│ Ketik *.menu ${category.toLowerCase()}*\n` +
-          '╰─⭓\n';
+          '╰─⭓\n\n';
       }
 
-      mani += `📌 klik button di bawah untuk lihat semua fitur ✨`
-     conn.sendMessage(m.chat, {
-      image: {
-        url: cfg.ads.imageUrl
-      },
-      caption: mani,
-      footer: cfg.bot.footer,
-      buttons: [{ 
-        buttonId: ".menu all",
-        buttonText: {
-          displayText: "[@] All Menu"
-        }
-      }, {
-        buttonId: ".menu2",
-        buttonText: {
-          displayText: "[@] Menu no button"
-        }
-      }],
-      contextInfo: {
-        mentionedJid: [...conn.parseMention(mani)]
-      }
-    }, { quoted: m });
+      mani += `📌 Ketik *.menu all* untuk lihat semua fitur ✨`;
     }
 
     // Menu All
@@ -81,7 +60,6 @@ export default {
         }
         mani += `╰─⭓\n\n`;
       }
-      m.reply(mani)
     }
 
     // Menu per kategori
@@ -92,33 +70,28 @@ export default {
       for (let hitem of grouped[jirlah]) {
         mani += `✦ ${m.prefix}${hitem.name}\n`;
       }
-      conn.sendMessage(m.chat, {
-      image: {
-        url: cfg.ads.imageUrl
-      },
-      caption: mani,
-      footer: cfg.bot.footer,
-      buttons: [{ 
-        buttonId: ".menu all",
-        buttonText: {
-          displayText: "[@] All Menu"
-        }
-      }, {
-        buttonId: ".menu2",
-        buttonText: {
-          displayText: "[@] Menu no button"
-        }
-      }],
-      contextInfo: {
-        mentionedJid: [...conn.parseMention(mani)]
-      }
-    }, { quoted: m });
     }
 
     // Kategori gak ketemu
     else {
       mani += `⚠️ Kategori *${jirlah}* gak ditemukan.\nKetik *.menu* untuk lihat list kategori.`;
-      m.reply(mani)
     }
+
+    conn.sendMessage(m.chat, {
+      image: {
+        url: cfg.ads.imageUrl
+      },
+      caption: mani,
+      contextInfo: {
+        mentionedJid: [...conn.parseMention(mani)],
+        externalAdReply: {
+          title: cfg.ads.title,
+          body: cfg.bot.version,
+          thumbnailUrl: cfg.ads.imageUrl,
+          showAdAttribution: true,
+          renderLargerThumbnail: true
+        }
+      }
+    }, { quoted: m });
   },
 };
