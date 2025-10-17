@@ -7,14 +7,16 @@ export default {
     },
     cooldown: 10,
     run: async (conn, m, { Api }) => {
-        if (!m.text) return m.reply('Masukkan teks yang valid!')
+        if (!m.text) return m.reply("Masukkan teks yang valid!");
 
         try {
-            let res = await Api.request('brat', "/api/brat", { text: m.text.trim() })
-            conn.sendSticker(m.chat, res.URL, m)
+            let res = await Api.request("brat", "/api/brat", {
+                text: m.text.trim()
+            });
+            conn.sendSticker(m.chat, res.URL, m);
         } catch (err) {
-            console.error('Error:', err)
-            m.reply('Gagal Membuat Sticker')
+            console.error("Error:", err);
+            m.reply("Gagal Membuat Sticker");
         }
     }
 };

@@ -2,19 +2,21 @@ export default {
     name: "bratvid",
     category: "sticker",
     command: ["bratvid", "bratvideo"],
-    settings: { 
-        limit: true 
+    settings: {
+        limit: true
     },
     cooldown: 15,
     run: async (conn, m, { Api }) => {
-        if (!m.text) return m.reply('Masukkan teks yang valid!')
+        if (!m.text) return m.reply("Masukkan teks yang valid!");
 
         try {
-            let res = await Api.request('brat', '/api/bratvid', { text: m.text.trim() })
-            conn.sendSticker(m.chat, res.URL, m)
+            let res = await Api.request("brat", "/api/bratvid", {
+                text: m.text.trim()
+            });
+            conn.sendSticker(m.chat, res.URL, m);
         } catch (err) {
-            console.error('Error:', err)
-            m.reply('Gagal Membuat Sticker')
+            console.error("Error:", err);
+            m.reply("Gagal Membuat Sticker");
         }
     }
 };

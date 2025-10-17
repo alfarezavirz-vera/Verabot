@@ -7,6 +7,8 @@ export default {
         botAdmin: true
     },
     run: async (conn, m) => {
-    m.reply('https://chat.whatsapp.com/' + await conn.groupInviteCode(m.chat))
+        m.reply(
+            "https://chat.whatsapp.com/" + (await conn.groupInviteCode(m.chat))
+        );
     }
-}
+};

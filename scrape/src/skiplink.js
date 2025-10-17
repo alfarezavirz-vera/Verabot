@@ -5,17 +5,20 @@ class TutwuriBypassClient {
     constructor(opts = {}) {
         this.cookies = [];
         this.refererLocation = "";
-        this.bypassEndpoint = opts.bypassEndpoint || "https://tursite.vercel.app/bypass";
+        this.bypassEndpoint =
+            opts.bypassEndpoint || "https://tursite.vercel.app/bypass";
         this.defaultSitekey = opts.sitekey || "0x4AAAAAAAfjzEk6sEUVcFw1";
     }
 
     atob(s) {
-        if (typeof Buffer !== "undefined") return Buffer.from(s, "base64").toString("binary");
+        if (typeof Buffer !== "undefined")
+            return Buffer.from(s, "base64").toString("binary");
         return global.atob(s);
     }
 
     btoa(s) {
-        if (typeof Buffer !== "undefined") return Buffer.from(s, "binary").toString("base64");
+        if (typeof Buffer !== "undefined")
+            return Buffer.from(s, "binary").toString("base64");
         return global.btoa(s);
     }
 
@@ -31,7 +34,7 @@ class TutwuriBypassClient {
 
     async step1_getInitialPage(shortlink) {
         const res = await axios.get(shortlink, {
-            headers: this.defaultHeaders(new URL(shortlink).host),
+            headers: this.defaultHeaders(new URL(shortlink).host)
         });
         this.appendCookies(res.headers["set-cookie"]);
         const $ = cheerio.load(res.data);
@@ -45,10 +48,10 @@ class TutwuriBypassClient {
             headers: {
                 ...this.defaultHeaders("tutwuri.id"),
                 cookie: this.getCookieHeader(),
-                referer: this.shortlinkOrigin,
+                referer: this.shortlinkOrigin
             },
             maxRedirects: 0,
-            validateStatus: null,
+            validateStatus: null
         });
         this.appendCookies(res.headers["set-cookie"]);
         this.refererLocation = res.headers["location"];
@@ -60,15 +63,17 @@ class TutwuriBypassClient {
         const res = await axios.get(this.bypassEndpoint, {
             params: {
                 url: targetUrl,
-                sitekey: sitekey,
+                sitekey: sitekey
             },
             headers: {
-                accept: "application/json",
-            },
+                accept: "application/json"
+            }
         });
         if (!res.data) throw new Error("Respons dari bypass endpoint kosong.");
         if (res.data.status !== "ok" || !res.data.token) {
-            const msg = res.data?.message || `Bypass gagal: ${JSON.stringify(res.data)}`;
+            const msg =
+                res.data?.message ||
+                `Bypass gagal: ${JSON.stringify(res.data)}`;
             throw new Error(msg);
         }
         this.bypassResult = { token: res.data.token };
@@ -79,15 +84,15 @@ class TutwuriBypassClient {
             "https://tutwuri.id/api/v1/verify",
             {
                 _a: 0,
-                "cf-turnstile-response": this.bypassResult.token,
+                "cf-turnstile-response": this.bypassResult.token
             },
             {
                 headers: {
                     ...this.apiHeaders(),
                     origin: "https://tutwuri.id",
-                    referer: `https://tutwuri.id/${this.refererLocation}`,
-                },
-            },
+                    referer: `https://tutwuri.id/${this.refererLocation}`
+                }
+            }
         );
         this.verification = res.data;
     }
@@ -98,15 +103,15 @@ class TutwuriBypassClient {
             {
                 key: Math.floor(Math.random() * 1000),
                 size: "2278.3408",
-                _dvc: this.btoa(String(Math.floor(Math.random() * 1000))),
+                _dvc: this.btoa(String(Math.floor(Math.random() * 1000)))
             },
             {
                 headers: {
                     ...this.apiHeaders(),
                     origin: "https://tutwuri.id",
-                    referer: `https://tutwuri.id/${this.refererLocation}`,
-                },
-            },
+                    referer: `https://tutwuri.id/${this.refererLocation}`
+                }
+            }
         );
         const responseData = res.data;
         let decoded = null;
@@ -117,18 +122,29 @@ class TutwuriBypassClient {
             if (fallback) {
                 decoded = fallback;
             } else {
-                throw new Error(`Parameter "u" tidak ditemukan atau tidak bisa didecode. Response API: ${JSON.stringify(responseData)}`);
+                throw new Error(
+                    `Parameter "u" tidak ditemukan atau tidak bisa didecode. Response API: ${JSON.stringify(
+                        responseData
+                    )}`
+                );
             }
         }
         return {
             ...responseData,
-            linkGo: decoded,
+            linkGo: decoded
         };
     }
 
     tryFallbackDecode(resData) {
         if (!resData || typeof resData !== "object") return null;
-        const candidateKeys = ["url", "redirect", "link", "target", "go", "data"];
+        const candidateKeys = [
+            "url",
+            "redirect",
+            "link",
+            "target",
+            "go",
+            "data"
+        ];
         for (const k of candidateKeys) {
             const v = resData[k];
             if (!v) continue;
@@ -186,7 +202,8 @@ class TutwuriBypassClient {
             "sec-fetch-site": "none",
             "sec-fetch-user": "?1",
             "upgrade-insecure-requests": "1",
-            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36",
+            "user-agent":
+                "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36"
         };
     }
 
@@ -202,13 +219,14 @@ class TutwuriBypassClient {
             "sec-fetch-dest": "empty",
             "sec-fetch-mode": "cors",
             "sec-fetch-site": "same-origin",
-            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36",
+            "user-agent":
+                "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Mobile Safari/537.36"
         };
     }
 
     appendCookies(cookieArr) {
         if (!Array.isArray(cookieArr)) return;
-        const parsed = cookieArr.map((c) => c.split(";")[0]);
+        const parsed = cookieArr.map(c => c.split(";")[0]);
         this.cookies.push(...parsed);
     }
 
@@ -217,8 +235,10 @@ class TutwuriBypassClient {
     }
 
     decodeUParam(fullUrl) {
-        if (!fullUrl) throw new Error('Parameter "u" tidak ditemukan dalam URL.');
-        if (typeof fullUrl !== "string") throw new Error("fullUrl bukan string.");
+        if (!fullUrl)
+            throw new Error('Parameter "u" tidak ditemukan dalam URL.');
+        if (typeof fullUrl !== "string")
+            throw new Error("fullUrl bukan string.");
         try {
             const urlObj = new URL(fullUrl);
             const encodedU = urlObj.searchParams.get("u");
@@ -235,7 +255,9 @@ class TutwuriBypassClient {
                 }
             } else {
                 if (this.isProbablyUrl(fullUrl)) return fullUrl;
-                const possibleU = urlObj.searchParams.get("param") || urlObj.searchParams.get("data");
+                const possibleU =
+                    urlObj.searchParams.get("param") ||
+                    urlObj.searchParams.get("data");
                 if (possibleU) {
                     try {
                         const dec = this.atob(decodeURIComponent(possibleU));
@@ -248,7 +270,9 @@ class TutwuriBypassClient {
             if (this.isProbablyUrl(fullUrl)) return fullUrl;
             const base64Try = this.tryDecodeBase64IfLooksLike(fullUrl);
             if (base64Try) return base64Try;
-            throw new Error("Gagal parse URL atau decode. fullUrl: " + String(fullUrl));
+            throw new Error(
+                "Gagal parse URL atau decode. fullUrl: " + String(fullUrl)
+            );
         }
         const base64Try2 = this.tryDecodeBase64IfLooksLike(fullUrl);
         if (base64Try2) return base64Try2;
@@ -256,4 +280,4 @@ class TutwuriBypassClient {
     }
 }
 
-export default new TutwuriBypassClient()
+export default new TutwuriBypassClient();

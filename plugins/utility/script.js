@@ -4,7 +4,9 @@ export default {
     command: ["sc", "script"],
     run: async (conn, m, { Func }) => {
         try {
-            const res = await Func.fetchJson("https://api.github.com/repos/Adzy-xyz/F-Beta-botz");
+            const res = await Func.fetchJson(
+                "https://api.github.com/repos/Adzy-xyz/F-Beta-botz"
+            );
 
             m.reply(`*Informasi Script*\n
 ✨ *Nama:* ${res.name}
@@ -16,7 +18,6 @@ export default {
 🚀 *Terakhir publish:* ${Func.ago(res.pushed_at)}
 🔗 *Link:* ${res.html_url}
 `);
-
         } catch (err) {
             console.error(err);
             return m.reply("Coba lagi nanti.");
