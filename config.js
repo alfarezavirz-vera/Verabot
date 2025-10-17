@@ -21,7 +21,7 @@ global.cfg = {
         ] /* [ Klo mau tambah tinggal [ ...03', '62x' ] ] */,
         version: global.pkg.version,
         footer: "Powered by Javascript" /* [ Well ya ] */,
-        prefix: [":"]
+        prefix: [":", "!"]
     },
     ads: {
         title: "Fanz a simple WeA bot" /* [ Aja sendiri ] */,
