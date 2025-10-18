@@ -43,14 +43,16 @@ export default {
             minute: "2-digit",
             second: "2-digit"
         });
-        const quot = createFakeContact(m.sender);
         const bot = global.cfg.bot;
         let mani = "";
 
         const intro = `╭─❏ *${bot.name}*
-│ Versi : ${bot.version}
+│ Versi : ${bot.version},
 │ Tanggal : ${time},
 │ Creator : made with ❤️ by Adzy,
+│ Bases: AgusXyz,
+│ UserName: ${m.pushname},
+│ cmd: "${m.cmd}"
 ╰─⭓`;
 
         // Menu Utama
@@ -90,7 +92,7 @@ export default {
                         }
                     }
                 },
-                { quoted: quot }
+                { quoted: qtext }
             );
         }
 
@@ -131,6 +133,7 @@ export default {
                     }
                 },
                 { quoted: quot }
+                { quoted: qtext }
             );
         }
 
@@ -164,7 +167,7 @@ export default {
                         }
                     }
                 },
-                { quoted: quot }
+                { quoted: qtext }
             );
         }
 
