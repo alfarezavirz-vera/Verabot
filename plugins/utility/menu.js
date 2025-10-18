@@ -1,24 +1,5 @@
 import fs from "fs";
 
-function createFakeContact(sender) {
-    const number = sender.split("@")[0];
-
-    return {
-        key: {
-            participants: "0@s.whatsapp.net",
-            remoteJid: "status@broadcast",
-            fromMe: false,
-            id: "ril"
-        },
-        message: {
-            contactMessage: {
-                vcard: `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${number}:${number}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`
-            }
-        },
-        participant: "0@s.whatsapp.net"
-    };
-}
-
 export default {
     name: "menu",
     category: "utility",
@@ -36,12 +17,11 @@ export default {
         const time = new Date().toLocaleString("id-ID", {
             timeZone: cfg.tz,
             weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric",
+            day: "2-digit",
+            month: "2-digit",
+            year: "2-digit",
             hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
+            minute: "2-digit"
         });
         const bot = global.cfg.bot;
         let mani = "";
@@ -50,7 +30,7 @@ export default {
 │ Versi : ${bot.version},
 │ Tanggal : ${time},
 │ Creator : made with ❤️ by Adzy,
-│ Bases: AgusXyz,
+│ Bases: AgusXzz,
 │ UserName: ${m.pushname},
 │ cmd: "${m.cmd}"
 ╰─⭓`;
@@ -61,15 +41,13 @@ export default {
             mani += `👋 Halo *@${
                 m.sender.split("@")[0]
             }*, ini daftar menu yang tersedia:\n\n`;
-
+            mani += `╭─❏ *$List Category*\n`;
             for (let category of Object.keys(grouped)) {
-                mani +=
-                    `╭─❏ *${category.toUpperCase()}*\n` +
-                    `│ Ketik *${m.prefix}menu ${category.toLowerCase()}*\n` +
-                    "╰─⭓\n";
+                mani += `│ *${m.prefix}menu ${category.toLowerCase()}*\n`;
             }
+            ("╰─⭓\n");
 
-            mani += `📌 klik button di bawah untuk lihat semua fitur ✨`;
+            mani += `Ketik "${m.prerix}menu all" buat liat semua menu`;
             conn.sendMessage(
                 m.chat,
                 {
@@ -132,7 +110,6 @@ export default {
                         }
                     }
                 },
-                { quoted: quot }
                 { quoted: qtext }
             );
         }
@@ -173,8 +150,41 @@ export default {
 
         // Kategori gak ketemu
         else {
-            mani += `⚠️ Kategori *${jirlah}* gak ditemukan.\nKetik *.menu* untuk lihat list kategori.`;
-            m.reply(mani);
+            mani += `⚠️ Kategori *${jirlah}* gak ditemukan.\nKlik button ini untuk melihat menu lain`;
+            conn.sendMessage(m.chat, {
+                text: mani,
+                footer: "[×] Salah ajg",
+                interactiveButtons: [
+                    {
+                        name: "single_select",
+                        buttonParamsJson: JSON.stringify({
+                            title: "Click Me!",
+                            sections: [
+                                {
+                                    title: "Sila pilih satu",
+                                    highlight_label: "Paling Umum",
+                                    rows: [
+                                        {
+                                            header: "Menu biasa",
+                                            title: "Menu",
+                                            description:
+                                                "Menampilkan menu biasa",
+                                            id: `${m.prefix}menu`
+                                        },
+                                        {
+                                            header: "Semuah menu",
+                                            title: "Menu All",
+                                            description:
+                                                "Menampilkan semua menu",
+                                            id: `${m.prefix}menu all`
+                                        }
+                                    ]
+                                }
+                            ]
+                        })
+                    }
+                ]
+            });
         }
     }
 };

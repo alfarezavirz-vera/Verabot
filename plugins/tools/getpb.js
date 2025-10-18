@@ -40,12 +40,22 @@ export default {
                 fs.unlinkSync(fileName);
             } else {
                 await conn.sendMessage(
-                    m.chat,
-                    {
-                        text: `[!] *Hasil Scrape Pastebin:*\n\n${content}`
-                    },
-                    { quoted: m }
-                );
+                m.chat,
+                {
+                    text: "`[#]` Text dari pastebin succes diambil klik untuk salin",
+                    footer: "Get Pastebin",
+                    interactiveButtons: [
+                        {
+                            name: "cta_copy",
+                            buttonParamsJson: JSON.stringify({
+                                display_text: "[!] Klik",
+                                copy_code: content
+                            })
+                        }
+                    ]
+                },
+                { quoted: qtext }
+            );
             }
         } catch (err) {
             console.error(err);

@@ -14,7 +14,19 @@ export default {
             return m.reply(Func.ex(m.cmd, null, "url", "github.com/Adzy-xyz"));
         try {
             const result = await kualatshort(m.text);
-            m.reply(`ini dia kak Short url nya ${result.data.shorturl}`);
+            conn.sendMessage(m.chat, {
+                text: "`[#]` Url berhasil di short klik button ini untuk salin",
+                footer: "Kualat - Short",
+                interactiveButtons: [
+                    {
+                        name: "cta_copy",
+                        buttonParamsJson: JSON.stringify({
+                            display_text: "[!] Klik",
+                            copy_code: result.data.shorturl
+                        })
+                    }
+                ]
+            }, {quoted:qtext});
         } catch (err) {
             console.log(err);
             m.reply("Upss:\n" + err.message);

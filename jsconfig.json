@@ -7,7 +7,7 @@
         "baseUrl": ".",
         "paths": {
             "#lib/*": ["./lib/*"],
-            "#scrape/*": ["./lib/scrape/*"]
+            "#scrape/*": ["./scrape/*"]
         }
     },
     "exclude": ["node_modules"]

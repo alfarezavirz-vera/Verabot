@@ -18,6 +18,29 @@ export default async function Command(conn, m) {
 
     await db.main(m);
     if (m.isBot) return;
+    if (m.type === "interactiveResponseMessage") {
+        console.log("interactiveResponseMessage Detected!");
+        let msg = m.message[m.type] || m.msg;
+
+        if (msg.nativeFlowResponseMessage && !m.isBot) {
+            let { id } =
+                JSON.parse(msg.nativeFlowResponseMessage.paramsJson || "{}") ||
+                {};
+            if (id) {
+                let emit_msg = {
+                    key: { ...m.key },
+                    message: { extendedTextMessage: { text: id } },
+                    pushName: m.pushname,
+                    messageTimestamp: m.messageTimestamp || Date.now()
+                };
+                return conn.ev.emit("messages.upsert", {
+                    messages: [emit_msg],
+                    type: "notify"
+                });
+            }
+        }
+    }
+
     if (!isOwner && db.list().settings.self) return;
     if (m.isGroup && db.list().group[m.chat]?.mute && !isOwner) return;
     if (db.list().user[m.sender].banned.status) return;
@@ -158,7 +181,19 @@ export default async function Command(conn, m) {
                         global.cooldowns[key] = now;
                     }
                     if (plugin.settings?.loading) m.reply(cfg.mess.wait);
-                    if (plugin.settings?.react) m.react(m.chat, Func.pickRandom(["","","","","","",""]));
+                    if (plugin.settings?.react)
+                        m.react(
+                            m.chat,
+                            Func.pickRandom([
+                                "⏰",
+                                "⏱️",
+                                "⏳",
+                                "🗿",
+                                "🙏🏻",
+                                "😅",
+                                "🤡"
+                            ])
+                        );
 
                     plugin.run(conn, m, ctx).then(async a => {
                         if (plugin.settings?.limit && !isPrems && !isOwner) {

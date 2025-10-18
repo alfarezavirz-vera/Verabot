@@ -9,7 +9,7 @@ export default {
     cooldown: 20,
     run: async (conn, m, { quoted }) => {
         const mime = quoted?.msg?.mimetype || "";
-        if (!/image|webp/.test(mime)) {
+        if (!/image|was|webp/.test(mime)) {
             return m.reply(`❌ Kirim atau reply stiker/video pendek.`);
         }
 

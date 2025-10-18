@@ -1,6 +1,6 @@
 {
     "name": "fanz",
-    "version": "2.3.1",
+    "version": "2.3.2",
     "description": "Fanz is simple WeA Bot",
     "license": "ISC",
     "author": "Adzy-f",
@@ -18,7 +18,6 @@
     "license": "Apache-2.0",
     "scripts": {
         "start": "node index.js",
-        "pm2": "npx pm2 monit",
         "lint": "eslint .",
         "prettier": "prettier --check .",
         "prettier:fix": "prettier --write ."
@@ -49,7 +48,6 @@
         "node-webpmux": "^3.2.1",
         "querystring": "^0.2.1",
         "undici": "^7.16.0",
-        "pm2": "^6.0.13",
         "path": "^0.12.7",
         "liora-lib": "^1.0.24"
     },

@@ -8,7 +8,23 @@ export default {
     run: async (conn, m, { quoted }) => {
         if (!quoted.body) return m.reply("Quoted kode nya");
         let esm = convertCJStoESM(quoted.body);
-        m.reply(esm);
+       conn.sendMessage(
+                m.chat,
+                {
+                    text: "[+] Succes convert! klik copy now",
+                    footer: "ToESM code",
+                    interactiveButtons: [
+                        {
+                            name: "cta_copy",
+                            buttonParamsJson: JSON.stringify({
+                                display_text: "Copy",
+                                copy_code: esm
+                            })
+                        }
+                    ]
+                },
+                { quoted: qtext }
+            );
     }
 };
 
