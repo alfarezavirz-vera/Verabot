@@ -6,7 +6,7 @@ export default {
         react: true
     },
     run: async (conn, m, { Api }) => {
-        let input = m.isQuote ? m.quoted?.body : m.text;
+        let input = m.isQuoted ? m.quoted?.body : m.text;
         if (!input) return m.reply("[×] Sila katakan sesuastu...");
 
         try {

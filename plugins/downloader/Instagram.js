@@ -13,12 +13,7 @@ export default {
 
             if (!parseUrl) {
                 return m.reply(
-                    Func.ex(
-                        m.cmd,
-                        "INSTA DL",
-                        "urlIg",
-                        "https://www.Instagram.com/reel/xxx"
-                    )
+                	"[!] Masukan url Instagramnya"
                 );
             }
 

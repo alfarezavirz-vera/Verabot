@@ -149,7 +149,7 @@ export default async function Command(conn, m) {
                         m.reply(cfg.mess.botAdmin);
                         continue;
                     }
-                    if (plugin.settings?.premium && !isPrems) {
+                    if (plugin.settings?.premium && !isPrems && !isOwner) {
                         m.reply(cfg.mess.premium);
                         continue;
                     }

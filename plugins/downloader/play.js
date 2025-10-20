@@ -29,7 +29,7 @@ export default {
                     mimetype: "audio/mpeg",
                     ptt: false
                 },
-                { quoted: m }
+                { quoted: qtext }
             );
         } catch (err) {
             m.reply(err.message);

@@ -17,27 +17,24 @@ global.qtext = {
 global.cfg = {
     pairing: 962796121703 /* [ Nomor bot ] */,
     code: "FANZBETA" /* [ Kode pairing mu ] */,
-    db: "beta-db" /* [ Buat tarok database ] */,
+    db: "fanz-db" /* [ Buat tarok database ] */,
     tz: "Asia/Makassar" /* [ Atur sesuai sama Daerah lu gua si wita] */,
     zone: "WITA",
     bot: {
         name: "FanzWeA bot" /* [ Nama bot ] */,
         owner: [
-            "962796121703"
+            "962796121703",
+            "6283899616999"
         ] /* [ Klo mau tambah tinggal [ ...03', '62x' ] ] */,
         version: global.pkg.version,
-        footer: "Powered by Javascript" /* [ Well ya ] */,
-        prefix: [":", "!", "#", "-"]
+        footer: "Fanz is My WeA bot" /* [ Well ya ] */,
+        prefix: [":", "!", "#", "-"],
+        thumb: "https://github.com/Adzy-xyz.png"
     },
     ads: {
-        title: "Fanz a simple WeA bot" /* [ Aja sendiri ] */,
-        body: "Fanzbot created with ❤️ by Adzy" /* [ Aja sendiri ] */,
-        sourceUrl: "https://kua.lat/" /* [ Aja Sendiri ] */,
-        imageUrl: "https://github.com/Adzy-xyz.png" /* [ Aja sendiri ] */
-    },
-    forwd: {
-        idch: "120363402531682848@newsletter" /* [ Id ch bebas ] */,
-        namech: "TypeError: dzy is not function" /* [ Nama ch mu ] */
+    	title: "FanzWeA Bot",
+    	body: "Powered by Adzy",
+    	source: "https://nefu.life/adzy"
     },
     mess: {
         wait: "`[#]` Harap tunggu sebentar..." /* [ Pesan tunggu ] */,
@@ -53,13 +50,12 @@ global.cfg = {
         free: "`[#]` Maaf yah fitur ini udah di buat khusus buat user Free, lagian lu kan dah Premium 🗿" /* [ Ada Ada saja😅 ] */
     },
     s: {
-        pack: `\n\n\n\nMade by:` /* [ setiker pack ] */,
-        auth: "\n\n\n\nFanzbot" /* [ Author nya ] */
+        pack: `Lolot` /* [ setiker pack ] */,
+        auth: "" /* [ Author nya ] */
     },
     apiKey: {
-        ryhar: "y7r35v1jrzh4z9myfsj2ut" /* [ buat naro macam macam apiKey taro di sini aja biar enakh ] */,
-        gemini: "AIzaSyAFZuYs9iu4lRrR_cWY8jelar9CUMyvL5o" /* [ Ambil di ai.google.studio katanya ] */,
-        neoxr: "o7pvv4"
+        ryhar: "p2pe75mrois182180i6y" /* [ buat naro macam macam apiKey taro di sini aja biar enakh ] */,
+        gemini: "AIzaSyAFZuYs9iu4lRrR_cWY8jelar9CUMyvL5o" /* [ Ambil di ai.google.studio katanya ] */
     }
 };
 

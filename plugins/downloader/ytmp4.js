@@ -12,12 +12,8 @@ export default {
     run: async (conn, m, { Api, Func }) => {
         if (!m.text)
             return m.reply(
-                Func.ex(
-                    m.cmd,
-                    "YOUTUBE DOWNLOAD",
-                    "url",
-                    "https://youtu.be/xxxx"
-                )
+            	"[!] Imvalids Url! masukan url yutub nya"
+            
             );
         await m.reply("Sabar yaa");
         let api = await Api.request("ryhar", "/api/downloader/youtube-video", {

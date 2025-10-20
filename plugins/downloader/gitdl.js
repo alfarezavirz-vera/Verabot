@@ -8,9 +8,7 @@ export default {
     },
     run: async (conn, m, { Func, log }) => {
         if (!m.text)
-            return m.reply(
-                Func.ex(m.cmd, "GITHUB DOWNLOAD", "User|Repo", "Adzy-f|F-Beta")
-            );
+            return m.reply("[!] Masukan link github!")
         try {
             const regex =
                 /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i;

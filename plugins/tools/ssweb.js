@@ -6,7 +6,7 @@ export default {
         const url = m.text.trim();
         if (!url)
             return m.reply(`[>] Penggunaan Salah:
-> ${m.cmd} url
+> ${m.cmd} [url]
 > ${m.cmd} github.com`);
 
         // Panggil scraper dari list
@@ -23,7 +23,7 @@ export default {
                     image: result.buffer,
                     caption: `✅ Screenshot dari ${url}`
                 },
-                { quoted: m }
+                { quoted: qtext }
             );
         } catch (err) {
             m.reply("❌ Gagal ambil screenshot: " + err.message);

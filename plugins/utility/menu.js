@@ -19,9 +19,7 @@ export default {
             weekday: "long",
             day: "2-digit",
             month: "2-digit",
-            year: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit"
+            year: "2-digit"
         });
         const bot = global.cfg.bot;
         let mani = "";
@@ -34,6 +32,17 @@ export default {
 │ UserName: ${m.pushname},
 │ cmd: "${m.cmd}"
 ╰─⭓`;
+        const kontext = {
+            mentionedJid: [...conn.parseMention(mani)],
+            externalAdReply: {
+                title: cfg.ads.title,
+                body: cfg.ads.body,
+                thumbnailUrl: cfg.bot.thumb,
+                mediaType: 1,
+                previewType: "VIDEO",
+                renderLargerThumbnail: true
+            }
+        };
 
         // Menu Utama
         if (!jirlah) {
@@ -41,34 +50,56 @@ export default {
             mani += `👋 Halo *@${
                 m.sender.split("@")[0]
             }*, ini daftar menu yang tersedia:\n\n`;
-            mani += `╭─❏ *$List Category*\n`;
+            mani += `╭─❏ *$ist Category*\n`;
             for (let category of Object.keys(grouped)) {
                 mani += `│ *${m.prefix}menu ${category.toLowerCase()}*\n`;
             }
-            ("╰─⭓\n");
+            mani += "╰─⭓\n";
 
-            mani += `Ketik "${m.prerix}menu all" buat liat semua menu`;
+            mani += `Ketik "${m.prefix}menu all" buat liat semua menu`;
             conn.sendMessage(
                 m.chat,
                 {
-                    document: fs.readFileSync("./media/bot.pdf"),
-                    mimetype: "application/pdf",
-                    pageCount: 2025,
-                    fileName: cfg.bot.name,
-                    fileLength: 1099511627776,
-                    caption: mani,
-                    contextInfo: {
-                        mentionedJid: [...conn.parseMention(mani)],
-                        externalAdReply: {
-                            title: cfg.ads.title,
-                            body: "Version: " + cfg.bot.version,
-                            showAdAttribution: true,
-                            thumbnailUrl: cfg.ads.imageUrl,
-                            mediaType: 1,
-                            previewType: "VIDEO",
-                            renderLargerThumbnail: true
+                    footer: cfg.bot.footer,
+                    text: mani,
+                    interactiveButtons: [
+                        {
+                            name: "single_select",
+                            buttonParamsJson: JSON.stringify({
+                                title: "Pencet!",
+                                sections: [
+                                    {
+                                        title: "Menu yang di pin",
+                                        highlight_label: "Paling byk dipke",
+                                        rows: [
+                                            {
+                                                header: "allmenu",
+                                                title: "All Menu",
+                                                description:
+                                                    "Melihat semua menu",
+                                                id: `${m.prefix}menu all`
+                                            },
+                                            {
+                                                header: "info os",
+                                                title: "OS/Pinh",
+                                                description:
+                                                    "Melihat status bot/ping bot",
+                                                id: `${m.prefix}os`
+                                            }
+                                        ]
+                                    }
+                                ]
+                            })
+                        },
+                        {
+                            name: "quick_reply",
+                            buttonParamsJson: JSON.stringify({
+                                display_text: "Info Script",
+                                id: `${m.prefix}script`
+                            })
                         }
-                    }
+                    ],
+                    contextInfo: {mentionedJid: [...conn.parseMention(mani)],}
                 },
                 { quoted: qtext }
             );
@@ -88,30 +119,7 @@ export default {
                 }
                 mani += `╰─⭓\n\n`;
             }
-            conn.sendMessage(
-                m.chat,
-                {
-                    document: fs.readFileSync("./media/bot.pdf"),
-                    mimetype: "application/pdf",
-                    pageCount: 2025,
-                    fileName: cfg.bot.name,
-                    fileLength: 1099511627776,
-                    caption: mani,
-                    contextInfo: {
-                        mentionedJid: [...conn.parseMention(mani)],
-                        externalAdReply: {
-                            title: cfg.ads.title,
-                            body: "Version: " + cfg.bot.version,
-                            showAdAttribution: true,
-                            thumbnailUrl: cfg.ads.imageUrl,
-                            mediaType: 1,
-                            previewType: "VIDEO",
-                            renderLargerThumbnail: true
-                        }
-                    }
-                },
-                { quoted: qtext }
-            );
+            m.reply({ text: mani, contextInfo: kontext }, { quoted: qtext });
         }
 
         // Menu per kategori
@@ -122,30 +130,7 @@ export default {
             for (let hitem of grouped[jirlah]) {
                 mani += `✦ ${m.prefix}${hitem.name}\n`;
             }
-            conn.sendMessage(
-                m.chat,
-                {
-                    document: fs.readFileSync("./media/bot.pdf"),
-                    mimetype: "application/pdf",
-                    pageCount: 2025,
-                    fileName: cfg.bot.name,
-                    fileLength: 1099511627776,
-                    caption: mani,
-                    contextInfo: {
-                        mentionedJid: [...conn.parseMention(mani)],
-                        externalAdReply: {
-                            title: "Category : " + jirlah.toUpperCase(),
-                            body: "Version: " + cfg.bot.version,
-                            showAdAttribution: true,
-                            thumbnailUrl: cfg.ads.imageUrl,
-                            mediaType: 1,
-                            previewType: "VIDEO",
-                            renderLargerThumbnail: true
-                        }
-                    }
-                },
-                { quoted: qtext }
-            );
+            m.reply({ text: mani, contextInfo: kontext }, { quoted: qtext });
         }
 
         // Kategori gak ketemu

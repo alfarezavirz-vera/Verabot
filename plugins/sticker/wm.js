@@ -17,7 +17,7 @@ export default {
                 packpublish: author
             });
         } else {
-            m.reply(Func.ex(m.cmd, null, `teks|teks`, "abay|coder"));
+            m.reply("[!] Invalid query! try it > " + m.cmd + " txt|txt2")
         }
     }
 };

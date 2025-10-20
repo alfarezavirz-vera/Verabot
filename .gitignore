@@ -4,4 +4,3 @@ tmp/*
 *.bak
 *.zip
 .git/*
-beta-db.json # tergantung nama db nya edit juga di config.js

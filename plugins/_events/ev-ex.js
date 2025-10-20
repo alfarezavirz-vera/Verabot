@@ -30,7 +30,7 @@ export default {
                 ?.catch(err => m.reply(util.format(err)));
         }
 
-        if (m.body?.startsWith(":e") && isOwner) {
+        if (m.body?.startsWith(":ex") && isOwner) {
             const exec = util.promisify(cp.exec).bind(cp);
             let o;
             try {

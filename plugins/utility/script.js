@@ -5,7 +5,7 @@ export default {
     run: async (conn, m, { Func }) => {
         try {
             const res = await Func.fetchJson(
-                "https://api.github.com/repos/Adzy-xyz/F-Beta-botz"
+                "https://api.github.com/repos/Adzy-xyz/Fanzbot"
             );
 
             m.reply(`*Informasi Script*\n

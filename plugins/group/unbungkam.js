@@ -13,7 +13,7 @@ const handler = {
                 `Berhasil ${m.command} grup ini! \n> Sekarang semua notif di bisukan`
             );
             if (db.list().group[m.chat].mute === false) {
-                m.reply(`Grup ini udah di ${m.command} sebelumnya`);
+                return m.reply(`Grup ini udah di ${m.command} sebelumnya`);
             }
         } catch (err) {
             m.reply(err.message);
