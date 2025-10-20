@@ -28,7 +28,7 @@ global.cfg = {
         ] /* [ Klo mau tambah tinggal [ ...03', '62x' ] ] */,
         version: global.pkg.version,
         footer: "Fanz is My WeA bot" /* [ Tungau ] */,
-        prefix: [":", "!", "#", "-"],
+        prefix: [":", "!", "#", "-"] /* [ Bisa di tambah ] */,
         thumb: "https://github.com/Adzy-xyz.png"
     },
     ads: {
