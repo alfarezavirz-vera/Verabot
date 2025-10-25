@@ -5,7 +5,7 @@ export default {
     settings: {
         limit: true
     },
-    run: async (conn, m, { Api }) => {
+    run: async (m, {conn, Api }) => {
         if (!m.text) return m.reply("Masuka query misal\n> Aku cinta");
         try {
             let p = {

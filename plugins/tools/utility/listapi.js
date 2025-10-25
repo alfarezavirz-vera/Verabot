@@ -2,7 +2,7 @@ export default {
     name: "listapi",
     category: "utility",
     command: ["listapi"],
-    run: async (conn, m, { Api }) => {
+    run: async (m, { conn ,Api }) => {
         try {
             const listUrl = Api.listUrl();
             if (!listUrl)
@@ -14,7 +14,7 @@ export default {
                 .map(([name, { baseURL }]) => `${name}: ${baseURL}`)
                 .join("\n");
 
-            let res = `List API yang tersedia:\n${teks}`;
+            let res = `[>] List API yang tersedia:\n${teks}`;
             m.reply(res);
         } catch (error) {
             m.reply(`Error: ${error.message}`);

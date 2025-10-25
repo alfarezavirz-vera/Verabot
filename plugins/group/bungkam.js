@@ -6,14 +6,14 @@ const handler = {
         group: true,
         owner: true
     },
-    run: async (conn, m) => {
+    run: async (m,{conn}) => {
         try {
             db.list().group[m.chat].mute = true;
             m.reply(
-                `Berhasil ${m.command} grup ini! \n> Sekarang semua notif di bisukan`
+                `[#] Berhasil ${m.command} grup ini! \n> Sekarang semua notif di bisukan`
             );
             if (db.list().group[m.chat].mute === true) {
-              return  m.reply(`Grup ini udah di ${m.command} sebelumnya`);
+              return  m.reply(`[!] Grup ini udah di ${m.command} sebelumnya`);
             }
         } catch (err) {
             m.reply(err.message);

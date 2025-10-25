@@ -6,7 +6,7 @@ export default {
         limit: true
     },
     cooldown: 10,
-    run: async (conn, m, { Api }) => {
+    run: async (m, { conn, Api }) => {
         if (!m.text) return m.reply("Masukkan teks yang valid!");
 
         try {

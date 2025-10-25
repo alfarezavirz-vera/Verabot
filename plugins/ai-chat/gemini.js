@@ -5,7 +5,7 @@ export default {
   settings: {
     react: true
   },
-  run: async (conn, m, {
+  run: async (m, { conn,
     Api
   }) => {
         const input = m.isQuoted ? m.quoted.body : m.text;

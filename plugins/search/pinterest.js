@@ -8,7 +8,7 @@ export default {
     command: ["pinterest", "pin"],
     settings: { loading: true },
     cooldown: 10,
-    run: async (conn, m, { Api }) => {
+    run: async (m, { conn, Api }) => {
         if (!m.text) return m.reply("[?] Nyari gambar apa");
 
         try {
@@ -22,7 +22,7 @@ export default {
 
             const data = apis.data;
             if (!data || data.length === 0)
-                return m.reply("Gambar tidak ditemukan");
+                return m.reply("[!] Gambar tidak ditemukan");
 
             // batasi hanya 10 gambar biar gak spam
             const limit = data.slice(0, 10);
@@ -30,14 +30,15 @@ export default {
             if (limit.length === 1) {
                 // kalau cuma 1 gambar, kirim langsung
                 await m.reply({ image: { url: limit[0].directLink } });
+                m.reply("Berhasil mengirim 1 gambar");
             } else {
                 // kalau lebih dari 1 gambar, kirim dalam bentuk album
                 const media = limit.map(img => ({
                     image: { url: img.directLink }
                 }));
-                await conn.sendAlbumMessage(m.chat, media, { quoted: m });
+                await conn.sendAlbumMessage(m.chat, media, { quoted: qtext });
+                m.reply("Berhasil mengirim 10 gambar");
             }
-            m.reply("Berhasil mengirim 10 gambar")
         } catch (err) {
             m.reply("Error");
             console.error(err);

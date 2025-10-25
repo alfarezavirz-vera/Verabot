@@ -1,11 +1,11 @@
 export default {
     name: "tocjs",
-    category: "tools",
+    category: "formatter",
     command: ["tocjs"],
     settings: {
         owner: true
     },
-    run: async (conn, m, { quoted }) => {
+    run: async (m, { conn ,quoted }) => {
         if (!quoted.body) return m.reply("Quoted kode nya");
         let cjs = convertESMtoCJS(quoted.body);
         conn.sendMessage(

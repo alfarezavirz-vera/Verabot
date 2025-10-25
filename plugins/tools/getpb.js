@@ -6,7 +6,7 @@ export default {
     name: "pastebin",
     category: "tools",
     command: ["pastebin", "getpb"],
-    run: async (conn, m) => {
+    run: async (m, { conn }) => {
         if (!m.text)
             return m.reply(
                 "[-] Ada yang ketinggalan!\n> " +
@@ -40,26 +40,26 @@ export default {
                 fs.unlinkSync(fileName);
             } else {
                 await conn.sendMessage(
-                m.chat,
-                {
-                    text: "`[#]` Text dari pastebin succes diambil klik untuk salin",
-                    footer: "Get Pastebin",
-                    interactiveButtons: [
-                        {
-                            name: "cta_copy",
-                            buttonParamsJson: JSON.stringify({
-                                display_text: "[!] Klik",
-                                copy_code: content
-                            })
-                        }
-                    ]
-                },
-                { quoted: qtext }
-            );
+                    m.chat,
+                    {
+                        text: "`[#]` Text dari pastebin succes diambil klik untuk salin",
+                        footer: "Get Pastebin",
+                        interactiveButtons: [
+                            {
+                                name: "cta_copy",
+                                buttonParamsJson: JSON.stringify({
+                                    display_text: "[!] Klik",
+                                    copy_code: content
+                                })
+                            }
+                        ]
+                    },
+                    { quoted: qtext }
+                );
             }
         } catch (err) {
             console.error(err);
-            m.reply("❌ Terjadi kesalahan saat mengambil data dari Pastebin.");
+            m.reply("[×] Terjadi kesalahan saat mengambil data dari Pastebin.");
         }
     }
 };

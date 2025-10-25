@@ -5,30 +5,36 @@ const handler = {
     settings: {
         loading: true
     },
-    run: async (conn, m, { Scrape, Func }) => {
+    run: async (m, { conn,  Scrape, Func }) => {
         if (!m.text)
             return m.reply(`[>] Penggunaan Salah:
 > ${m.cmd} url
 > ${m.cmd} https:/sfl.gl/xx`);
-        let args = m.text.split("|").map(a => a.trim());
+        let args = m.text
         try {
             let udah = (await Scrape.skiplink).default;
             let url = await udah.get(args);
 
+            const interactiveButtons = [
+                {
+                    name: "cta_url",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "Pencet",
+                        url: url.linkGo,
+                        merchant_url: url.linkGo
+                    })
+                }
+            ];
             m.reply(
-                `Mantap Berhasil kak uhyyy:\n${Func.styles(
-                    "komen",
-                    url.linkGo
-                )}`
+                {
+                    text: "[!] ShortUrl berhasil",
+                    footer: cfg.bot.footer,
+                    interactiveButtons
+                },
+                { quoted: qtext }
             );
         } catch (err) {
-            if (err.response) {
-                m.reply(`${err.response.status}\n${err.response.statusText}`);
-            } else if (err.request) {
-                m.reply("Jaringan sedang error");
-            } else {
-                m.reply(err.message);
-            }
+            m.reply(err.message);
         }
     }
 };

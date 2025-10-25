@@ -5,7 +5,7 @@ export default {
     category: "downloader",
     command: ["tt", "tiktok"],
     cooldown: 15,
-    run: async (conn, m, { Func }) => {
+    run: async (m, { conn, Func }) => {
         try {
             const input = m.isQuoted ? m.quoted.body : m.text;
             const regex =

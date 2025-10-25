@@ -1,31 +1,23 @@
-export default {
-    name: "ban+unban",
+const bans = {
+    name: "ban",
     category: "owner",
-    command: ["ban", "unban"],
+    command: ["ban"],
     settings: {
         owner: true
     },
-    run: async (conn, m) => {
+    run: async (m, { conn }) => {
         const number = m.isQuoted
             ? m.quoted.sender
             : m.text.replace(/[^0-9]/g, "") + "@s.whatsapp.net";
         if (!number)
             return m.reply(
-                `❌ Masukkan nomor target!\nContoh: ${m.prefix}ban 6281234567890`
+                `[×] Masukkan nomor target!\nContoh: ${m.prefix}ban 6281234567890`
             );
 
-        if (m.command === "ban") {
-            db.list().user[number].banned.status = true;
-            await db.save();
-            return m.reply(`🚫 User *${number.split("@")[0]}* berhasil di-ban.`);
-        }
-
-        if (m.command === "unban") {
-            db.list().user[jid].banned.status = false;
-            await db.save();
-            return m.reply(
-                `✅ User *@${number.split("@")[0]}* sudah di-unban.`
-            );
-        }
+        db.list().user[number].banned = true;
+        await db.save();
+        return m.reply(`[!] User *${number.split("@")[0]}* berhasil di-ban.`);
     }
 };
+
+export default bans;

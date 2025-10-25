@@ -3,7 +3,7 @@ export default {
     category: "anime",
     command: ["bluearchive"],
     cooldown: 20,
-    run: async (conn, m, { Api }) => {
+    run: async (m, { conn,Api }) => {
         try {
             let api = await Api.createUrl("zenz", "/api/random/bluearchive");
             m.reply({

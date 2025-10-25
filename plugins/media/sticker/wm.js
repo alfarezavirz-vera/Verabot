@@ -3,7 +3,7 @@ export default {
     category: "sticker",
     command: ["swm", "stikwm"],
     cooldown: 10,
-    run: async (conn, m, { quoted, Func }) => {
+    run: async (m, { conn, quoted, Func }) => {
         if (/image|video|webp/.test(quoted.msg?.mimetype) && m.text) {
             let media = await quoted.download();
             if (quoted.msg?.seconds > 10) {

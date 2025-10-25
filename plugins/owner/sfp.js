@@ -7,7 +7,7 @@ export default {
     settings: {
         owner: true
     },
-    run: async (conn, m, { quoted }) => {
+    run: async (m, { conn, quoted }) => {
         if (!m.text)
             return m.reply(`Nama filenya??\nContoh: ${m.cmd} folder/namafile`);
         if (!quoted.body) return m.reply(`balas pesan nya!`);

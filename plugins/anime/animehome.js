@@ -8,7 +8,7 @@ export default {
     settings: {
         react: true
     },
-    run: async (conn, m, { Func, quoted }) => {
+    run: async (m, { conn, Func, quoted }) => {
         let input = m.isQuoted ? quoted?.body : m.text;
         const BaseUrl = "https://www.sankavollerei.com/anime/home";
         const apis = await Func.fetchJson(BaseUrl);

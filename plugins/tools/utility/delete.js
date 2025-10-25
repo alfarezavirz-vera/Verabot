@@ -1,8 +1,8 @@
 export default {
     name: "delete",
-    category: "tools",
+    category: "utility",
     command: ["delete", "del"],
-    run: async (conn, m, { isAdmin, isBotAdmin }) => {
+    run: async (m, { conn ,isAdmin, isBotAdmin }) => {
         if (!m.quoted)
             return m.reply(
                 `Reply pesan yang ingin dihapus dengan caption ${m.cmd}`

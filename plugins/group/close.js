@@ -3,7 +3,7 @@ export default {
     category: "group",
     command: ["close"],
     settings: { admin: true, botAdmin: true, group: true },
-    run: async (conn, m) => {
+    run: async (m,{conn}) => {
         const data = await conn.groupMetadata(m.chat);
         let isClose = (data.announce === true);
         if (isClose) {

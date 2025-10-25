@@ -7,7 +7,7 @@ export default {
         admin: true,
         botAdmin: true
     },
-    run: async (conn, m, { metadata, Func }) => {
+    run: async (m, { conn,metadata, Func }) => {
         const user = m.isQuoted
             ? m.quoted.sender
             : m.text.replace(/[^0-9]/g, "") + "@s.whatsapp.net";

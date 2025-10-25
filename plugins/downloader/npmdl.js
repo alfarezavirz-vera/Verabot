@@ -6,7 +6,7 @@ export default {
         loading: true
     },
     cooldown: 15,
-    run: async (conn, m, { Api }) => {
+    run: async (m, { conn, Api }) => {
         if (!m.text)
             return m.reply(
                 "[×] Failed to download silab masukan query\n> Misal: naruyaizumi"
@@ -20,7 +20,7 @@ export default {
             m.reply({
                 document: { url: apis.data.url },
                 caption: "Done downloads",
-                fileName: "NpmDL.tar.gz",
+                fileName: m.text.trim() + ".tar.gz",
                 mimetype: "application/gzip"
             });
         } catch (err) {

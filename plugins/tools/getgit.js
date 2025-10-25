@@ -7,9 +7,9 @@ const handler = {
     settings: {
         react: true
     },
-    run: async (conn, m) => {
+    run: async (m, { conn }) => {
         if (!m.args[0])
-            m.reply`⚠️ Contoh penggunaan:\n${m.cmd} https://github.com/GilangSan/myscraper/blob/main/ytChannelAnalyzer.js`;
+            m.reply(`\`[!!]\`Contoh penggunaan:\n${m.cmd} https://github.com/GilangSan/myscraper/blob/main/ytChannelAnalyzer.js`);
         let url = m.args[0];
         let finalUrl = url;
         try {
@@ -31,7 +31,7 @@ const handler = {
                         document: Buffer.from(data, "utf-8"),
                         fileName: "content.log",
                         mimetype: "text/plain",
-                        caption: `✅ Berhasil mengambil isi file dari:\n${finalUrl}`
+                        caption: `[√] Berhasil mengambil isi file dari:\n${finalUrl}`
                     },
                     { quoted: m }
                 );
@@ -57,7 +57,7 @@ const handler = {
         } catch (err) {
             console.error(err);
             m.reply(
-                "❌ Gagal mengambil isi file, pastikan link valid dan file publik."
+                "[×] Gagal mengambil isi file, pastikan link valid dan file publik."
             );
         }
     }

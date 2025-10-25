@@ -7,7 +7,7 @@ export default {
         admin: true,
         botAdmin: true
     },
-    run: async (conn, m) => {
+    run: async (m, { conn}) => {
         m.reply(
             "Berhasil Reset linkgc\n\n Link : https://chat.whatsapp.com/" +
                 (await conn.groupRevokeInvite(m.chat))

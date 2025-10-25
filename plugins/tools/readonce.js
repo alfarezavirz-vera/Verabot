@@ -2,7 +2,7 @@ export default {
     name: "rvo",
     category: "tools",
     command: ["rvo"],
-    run: async (conn, m) => {
+    run: async (m, { conn }) => {
         if (!m.quoted?.msg?.viewOnce)
             return m.reply("Not a one-time view media!!");
         m.quoted.msg.viewOnce = false;

@@ -19,7 +19,7 @@ export default async function Command(conn, m) {
     await db.main(m);
     if (m.isBot) return;
     if (m.type === "interactiveResponseMessage") {
-        console.log("interactiveResponseMessage Detected!");
+        log.info("interactiveResponseMessage Detected!");
         let msg = m.message[m.type] || m.msg;
 
         if (msg.nativeFlowResponseMessage && !m.isBot) {
@@ -43,7 +43,7 @@ export default async function Command(conn, m) {
 
     if (!isOwner && db.list().settings.self) return;
     if (m.isGroup && db.list().group[m.chat]?.mute && !isOwner) return;
-    if (db.list().user[m.sender].banned.status) return;
+    if (db.list().user[m.sender].banned) return;
 
     // const isAdmin = m.isGroup && metadata.participants.find(u => conn.getJid(u.id) === m.sender).admin == 'admin' || false;
     // const isBotAdmin = m.isGroup && metadata.participants.find(u => conn.getJid(u.id) === jidNormalizedUser(conn.user.id)).admin == 'admin' || false;
@@ -56,7 +56,7 @@ export default async function Command(conn, m) {
     // Cek kalau lagi di grup dan metadata participants-nya gak ada
     if (m.isGroup && !metadata?.participants) {
         console.error(
-            "⚠️ Metadata participants tidak ditemukan, bukan grup atau metadata belum ke-load"
+            "️[×] Metadata participants tidak ditemukan, bukan grup atau metadata belum ke-load"
         );
         return;
     }
@@ -79,11 +79,12 @@ export default async function Command(conn, m) {
     let isAdmin =
         (m.isGroup && senderData && senderData.admin === "admin") ||
         "superadmin";
-    let isBotAdmin = m.isGroup && botData && botData.admin === "admin" || "superadmin";
+    let isBotAdmin =
+        (m.isGroup && botData && botData.admin === "admin") || "superadmin";
     // Untuk private message, kamu bisa set admin dan botAdmin sesuai kebutuhan
     if (!m.isGroup) {
-        isAdmin = false; // Misalnya bot gak punya role admin di private message
-        isBotAdmin = true; // Misalnya bot selalu dianggap admin di private message
+        isAdmin = false; // false = Misalnya bot gak punya role admin di private message
+        isBotAdmin = false; // true = Misalnya bot selalu dianggap admin di private message
     }
     const Scrape = await scrape.list();
     const isPrems = db.list().user[m.sender].premium.status;
@@ -99,6 +100,7 @@ export default async function Command(conn, m) {
     });
 
     const ctx = {
+        conn,
         Api,
         Func,
         downloadM,
@@ -109,8 +111,7 @@ export default async function Command(conn, m) {
         isBotAdmin,
         isPrems,
         log,
-        Scrape,
-        conn
+        Scrape
     };
 
     for (const plugin of Object.values(plugins)) {
@@ -175,16 +176,14 @@ export default async function Command(conn, m) {
                                 1000
                             ).toFixed(1);
                             m.reply(
-                                `⏳ Tunggu *${sisa}s* sebelum pakai command ini lagi!`
+                                `[!] Tunggu *${sisa}s* sebelum pakai command ini lagi!`
                             );
                             continue; // stop jalanin command
                         }
 
                         global.cooldowns[key] = now;
                     }
-                    if (plugin.settings?.loading) m.reply(cfg.mess.wait);
-                    if (plugin.settings?.react)
-                        m.react(
+                    if (plugin.settings?.react)m.react(
                             m.chat,
                             Func.pickRandom([
                                 "⏰",
@@ -196,12 +195,14 @@ export default async function Command(conn, m) {
                                 "🤡"
                             ])
                         );
+                    if (plugin.settings?.loading) m.reply(cfg.mess.wait);
 
-                    plugin.run(conn, m, ctx).then(async a => {
+                    plugin.run(m, ctx).then(async a => {
                         if (plugin.settings?.limit && !isPrems && !isOwner) {
-                            db.list().user[m.sender].limit -= 1;
-                            let info = `Halo kak!, Kamu baru aja pkek fitur limit 😄
-Sekarang limit kakk tersisa (${db.list().user[m.sender].limit} Limit) kak.
+                            db.list().user[m.sender].limit -= 5;
+                            let info = `5 Limit terpakai untuk menggunkan fifur ini. limit anda tersisa ${
+                                db.list().user[m.sender].limit
+                            }.
 limit bakal tereset tiap jam 2:00 ${cfg.zone} kak!`;
                             m.reply(info);
                         }

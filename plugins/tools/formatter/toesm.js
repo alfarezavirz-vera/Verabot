@@ -1,11 +1,11 @@
 export default {
     name: "toesm",
-    category: "tools",
+    category: "formatter",
     command: ["toesm"],
     settings: {
         owner: true
     },
-    run: async (conn, m, { quoted }) => {
+    run: async (m, { conn ,quoted }) => {
         if (!quoted.body) return m.reply("Quoted kode nya");
         let esm = convertCJStoESM(quoted.body);
        conn.sendMessage(

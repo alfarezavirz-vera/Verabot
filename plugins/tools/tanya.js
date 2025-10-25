@@ -3,7 +3,7 @@ export default {
     category: "tools",
     command: ["tanya"],
     settings: { react: true },
-    run: async (conn, m) => {
+    run: async (m, { conn }) => {
     	const inputs = m.isQuoted?m.quoted?.body:m.text
         if (!inputs) return m.reply("[?] Nanya apah?");
         try {

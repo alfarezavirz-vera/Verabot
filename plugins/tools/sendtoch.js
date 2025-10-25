@@ -3,7 +3,7 @@ export default {
     category: "tools",
     command: ["sendtoch"],
     cooldown: 10, // biar ga spam
-    run: async (conn, m, { quoted }) => {
+    run: async (m, { conn,  quoted }) => {
         let inputan = m.isQuoted ? quoted.body : m.text;
         let idch = cfg.forwd.idch;
 

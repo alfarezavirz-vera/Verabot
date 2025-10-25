@@ -4,17 +4,22 @@ import FormData from "form-data";
 
 export default {
     name: "hd",
-    category: "tools",
+    category: "utility",
     command: ["hdr", "hd"],
     settings: {
         loading: true
     },
-    run: async (conn, m, { quoted }) => {
+    run: async (m, { conn, quoted }) => {
         if (!/image/.test(quoted.msg.mimetype))
             return m.reply(`Kirim/Reply Foto Dengan Caption ${m.cmd}`);
         let media = await quoted.download();
         let res = await hdr(media, 2);
-        m.reply({ image: res, caption: "Nih Hasilnya" });
+        m.reply({
+            image: res,
+            caption:
+                "Nih Hasilnya\n> Klo nak lebih hade lagi bisa kirim lagi fotonya dg cap " +
+                m.cmd
+        });
     }
 };
 

@@ -6,7 +6,7 @@ export default {
         group: true,
         admin: true
     },
-    run: async (conn, m, { metadata }) => {
+    run: async ( m, { conn,metadata }) => {
         const text = m.isQuoted ? m.quoted.text : m.text;
         if (!text)
             return m.reply(

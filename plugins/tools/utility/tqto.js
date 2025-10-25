@@ -2,14 +2,15 @@ export default {
     name: "tqto",
     category: "utility",
     command: ["tqto"],
-    run: async (conn, m, { Api }) => {
+    run: async (m, { conn }) => {
         let res = `Terimakasih pada:
 > AgusXzz 
 > Purrbits
 > Allah
 > Ortu
 > Semua nya
-> Whiskeysoket`;
+> Whiskeysoket
+> Itsukichan bail`;
 
         m.reply(res);
     }

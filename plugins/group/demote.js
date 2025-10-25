@@ -7,7 +7,7 @@ export default {
         admin: true,
         botAdmin: true
     },
-    run: async (conn, m, { metadata }) => {
+    run: async ( m, { conn,metadata }) => {
         const user = m.isQuoted
             ? m.quoted.sender
             : m.mentions && m.mentions[0]

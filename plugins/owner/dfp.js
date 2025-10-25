@@ -7,7 +7,7 @@ export default {
     settings: {
         owner: true
     },
-    run: async (conn, m) => {
+    run: async (m, { conn,} ) => {
         if (!m.text)
             return m.reply(`Nama filenya??\nContoh: ${m.cmd} folder/namafile`);
         let path = "./plugins/" + m.text + ".js";

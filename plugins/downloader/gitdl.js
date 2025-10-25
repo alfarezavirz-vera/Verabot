@@ -6,9 +6,8 @@ export default {
         react: true,
         loading: true
     },
-    run: async (conn, m, { Func, log }) => {
-        if (!m.text)
-            return m.reply("[!] Masukan link github!")
+    run: async ( m, { conn,Func, log }) => {
+        if (!m.text) return m.reply("[!] Masukan link github!");
         try {
             const regex =
                 /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i;
@@ -26,16 +25,13 @@ export default {
                 contextInfo: {
                     externalAdReply: {
                         title: "Github Download || gitclone",
-                        thumbnailUrl: cfg.ads.imageUrl
+                        thumbnail: cfg.bot.thumb
                     }
                 }
             });
         } catch (err) {
             log.error(err);
-            m.reply(
-                "🗣️: Mak, ada kah Tulisan yang ada merah merah nya?:\n\nIni >> \n" +
-                    err.message
-            );
+            m.reply(err?.message);
         }
     }
 };

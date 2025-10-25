@@ -2,7 +2,7 @@ export default {
     name: "ssweb",
     command: ["ssweb"],
     category: "tools",
-    run: async (conn, m, { Scrape, Func }) => {
+    run: async (m, { conn, Scrape, Func }) => {
         const url = m.text.trim();
         if (!url)
             return m.reply(`[>] Penggunaan Salah:
@@ -21,12 +21,12 @@ export default {
                 m.chat,
                 {
                     image: result.buffer,
-                    caption: `✅ Screenshot dari ${url}`
+                    caption: `[√] screenshot dari ${url}`
                 },
                 { quoted: qtext }
             );
         } catch (err) {
-            m.reply("❌ Gagal ambil screenshot: " + err.message);
+            m.reply("[×] Gagal ambil screenshot: " + err.message);
         }
     }
 };

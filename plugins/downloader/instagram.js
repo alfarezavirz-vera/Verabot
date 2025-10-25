@@ -4,7 +4,7 @@ export default {
     name: "instagram",
     category: "downloader",
     command: ["igdl", "ig"],
-    run: async (conn, m, { Func, Scrape }) => {
+    run: async (m, { conn, Func, Scrape }) => {
         try {
             const input = m.isQuoted ? m.quoted.text : m.text;
             const regex =

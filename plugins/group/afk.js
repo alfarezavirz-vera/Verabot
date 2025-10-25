@@ -5,7 +5,7 @@ export default {
     settings: {
         group: true
     },
-    run: async (conn, m) => {
+    run: async ( m,{conn}) => {
         let user = db.list().user;
         user.afk = +new Date();
         user.afkAlasan = m.text;

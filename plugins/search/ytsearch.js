@@ -8,7 +8,7 @@ export default {
     settings: {
     	loading:true
     },
-    run: async (conn, m, { Api, Func }) => {
+    run: async (m, { conn, Api, Func }) => {
         if (!m.text) return m.reply("[!] Masukan query buat nyari video yutub");
         try {
             let endp = "/api/search/youtube";
@@ -22,7 +22,7 @@ export default {
                 );
             }
             const { data } = apis;
-            let txt = "Ini adalah hasio dari pencarian tersebut \n\n\n";
+            let txt = "Ini adalah hasil dari pencarian tersebut \n\n\n";
             data.slice(0, 8).forEach(
                 ({
                     title,

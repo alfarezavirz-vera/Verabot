@@ -1,6 +1,6 @@
 {
     "name": "fanz",
-    "version": "2.5.2",
+    "version": "2.5.3",
     "description": "Fanz is simple WeA Bot",
     "license": "ISC",
     "author": "Adzy-f",
@@ -25,7 +25,8 @@
     "imports": {
         "#lib/*": "./lib/*",
         "#scrape/*": "./scrape/src/*",
-        "#client/*": "./lib/client/*"
+        "#client": "./lib/client/*",
+        "#jembut": "./lib/buttonArray/button.js"
     },
     "keywords": [
         "whatsapp-bot",
@@ -48,8 +49,7 @@
         "node-webpmux": "^3.2.1",
         "querystring": "^0.2.1",
         "undici": "^7.16.0",
-        "path": "^0.12.7",
-        "liora-lib": "^1.0.24"
+        "path": "^0.12.7"
     },
     "devDependencies": {
         "@eslint/js": "^9.37.0",

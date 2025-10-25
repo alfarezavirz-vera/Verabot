@@ -16,36 +16,43 @@ global.qtext = {
 /*============= Konfigurasi =============*/
 global.cfg = {
     pairing: 962796121703 /* [ Nomor bot ] */,
-    code: "F4NZB3T4" /* [ Kode pairing mu ] */,
-    db: "fanz-db" /* [ Buat tarok database ] */,
-    tz: "Asia/Makassar" /* [ Atur sesuai sama Daerah lu gua si wita] */,
-    zone: "WITA",
+    code: "53MVACK5" /* [ Kode pairing mu ] */,
+    db: "siti-stabilizer" /* [ Buat tarok database ] */,
+    tz: "Asia/Jakarta" /* [ Atur aja ] */,
+    zone: "WIB",
+    user: {
+        limit: 50
+    },
     bot: {
         name: "FanzWeA bot" /* [ Nama bot ] */,
         owner: [
             "962796121703",
             "6283899616999"
         ] /* [ Klo mau tambah tinggal [ ...03', '62x' ] ] */,
+        ownerUrl: "https://nefu.life/adzy" /* [ Bebas mau link apah ] */,
         version: global.pkg.version,
         footer: "Fanz is My WeA bot" /* [ Well ya ] */,
-        prefix: [":", "!", "#", "-"],
+        prefix: ["/", "#", "?", ".", "~"] /* [ Mendukubg multi pretix ] */,
         thumb: readFileSync("./media/bot.jpg") /* [ Atut aja sesuka lu ] */,
-        thumbvid: "" /* [ Buat versi video nya ] */
+        thumbvid: "" /* [ Buat versi video nya bisa pke url atau buffer ] */,
+        audio: readFileSync("./media/cakepp.mp3"),
+        self: false /* [ default status bot] */,
+        on: true
     },
     ads: {
-        title: "FanzWeA Bot",
-        body: "Powered by Adzy",
-        source: "https://nefu.life/adzy"
+        title: "Fanz-WeA boT",
+        body: "Fanzbot a simple WeA Bot",
+        source: "https://kua.lat/ikamLah"
     },
     mess: {
-        wait: "`[-]` Tunggu sebentar yah, setika 3 tahun lagi..." /* [ Pesan tunggu ] */,
+        wait: "`[-]` Tunggu sebentar yah, sekitar 3 tahun lagi..." /* [ Pesan tunggu ] */,
         owner: "`[!]` Fifur khusus Owner tercintah" /* [ Pesan khusus ] */,
         group: "`[!]` Cuma bisa di group" /* [ Pesan hanya di grup ] */,
         admin: "`[!]` Khusus admin tersyang..." /* [ Pesan khusus admin ] */,
         botAdmin:
             "`[=]` Jadikan bot admin dulu..." /* [ Pesan bot harus jadi admin ] */,
         private:
-            "`[×]`Hanya bisa di private chat" /* [ Pesan bot hanya dipakai di pc ] */,
+            "`[×]` Hanya bisa di private chat" /* [ Pesan bot hanya dipakai di pc ] */,
         premium: "`[×]` Dibuat untuk user prem" /* [ Pesan khusus premium ] */,
         free: "`[!]` Anda user premium dilarang pakai" /* [ Ada Ada saja😅 ] */
     },

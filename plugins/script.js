@@ -2,7 +2,7 @@ export default {
     name: "script",
     category: "main",
     command: ["sc", "script"],
-    run: async (conn, m, { Func }) => {
+    run: async (m, { conn,  Func }) => {
         try {
             const res = await Func.fetchJson(
                 "https://api.github.com/repos/Adzy-xyz/Fanzbot"
@@ -11,13 +11,13 @@ export default {
             m.reply(
                 {
                     text: `*Informasi Script*\n
-✨ *Nama:* ${res.name}
-👤 *Pemilik:* ${res.owner.login ?? "-"}
-⭐ *Star:* ${res.stargazers_count ?? 0}
-🍴 *Forks:* ${res.forks ?? 0}
-📅 *Dibuat sejak:* ${Func.ago(res.created_at)}
-♻️ *Terakhir update:* ${Func.ago(res.updated_at)}
-🚀 *Terakhir publish:* ${Func.ago(res.pushed_at)}
+> *Nama:* ${res.name}
+> *Pemilik:* ${res.owner.login ?? "-"}
+> *Star:* ${res.stargazers_count ?? 0}
+> *Forks:* ${res.forks ?? 0}
+> *Dibuat sejak:* ${Func.ago(res.created_at)}
+> *Terakhir update:* ${Func.ago(res.updated_at)}
+> *Terakhir publish:* ${Func.ago(res.pushed_at)}
 `,
                     interactiveButtons: [
                         {

@@ -1,13 +1,13 @@
 export default {
     name: "mediafire",
-    category: "dowloader",
+    category: "downloader",
     command: ["mediafire", "mfdl"],
     settings: {
         limit: true,
         loading: true
     },
     cooldown: 15,
-    run: async (conn, m, { Api, Func }) => {
+    run: async (m, { conn,Api, Func }) => {
         if (!m.text)
             return m.reply(
                 "[×] Failed to dowload! Silakan masukann link mediafire"

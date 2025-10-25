@@ -6,7 +6,7 @@ export default {
         limit: true
     },
     cooldown: 10,
-    run: async (conn, m, { quoted }) => {
+    run: async (m, { conn, quoted }) => {
         if (/image|video|webp/.test(quoted.msg?.mimetype)) {
             const media = await quoted.download();
 

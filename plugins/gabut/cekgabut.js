@@ -6,7 +6,7 @@ export default {
         group: true
     },
     cooldown: 8,
-    run: async (conn, m, { Func }) => {
+    run: async (m, {conn, Func }) => {
         const user = m.isQuoted
             ? m.quoted.sender
             : m.mentions && m.mentions[0]

@@ -8,7 +8,7 @@ export default {
     settings: {
         owner: true
     },
-    run: async (conn, m) => {
+    run: async (m, { conn, }) => {
         const sesi = ["./sessions"];
         const array = [];
 
@@ -40,7 +40,7 @@ export default {
         }
 
         if (deletedFiles.length === 0) {
-            m.reply("tidak ada file yang tersisa di folder session");
+            m.reply("[×] tidak ada file yang tersisa di folder session");
         }
     }
 };

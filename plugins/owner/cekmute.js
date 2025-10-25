@@ -6,7 +6,7 @@ export default {
         owner: true,
         group: true
     },
-    run: async (conn, m) => {
+    run: async (m, { conn, }) => {
         const groupName = m.isGroup
             ? conn.chats[m.chat]?.subject || "this group"
             : "this chat";

@@ -4,10 +4,10 @@ export default {
     name: "kodepos",
     category: "tools",
     command: ["kodepos", "codepos"],
-    run: async (conn, m) => {
+    run: async (m, { conn }) => {
         if (!m.args[0]) {
             return m.reply(
-                `📮 Masukkan nama daerah!\nContoh: ${m.cmd} Sukabumi`
+                `[!] Masukkan nama daerah!\nContoh: ${m.cmd} Sukabumi`
             );
         }
 
@@ -32,20 +32,20 @@ export default {
             const hasil = data?.data?.data;
             if (!hasil || !hasil.length)
                 return m.reply(
-                    "❌ Tidak ditemukan hasil untuk daerah tersebut."
+                    "[×] Tidak ditemukan hasil untuk daerah tersebut."
                 );
 
             const item = hasil[0];
             const link = `https://www.google.com/maps?q=${item.latitude},${item.longitude}`;
 
-            const caption = `🗺️ *Kode Pos Ditemukan!*
-> 🏷️ Kode: ${item.code}
-> 📮 Kode Pos: ${item.postal}
-> 🏠 Provinsi: ${item.province}
-> 🏙️ Kota/Kab: ${item.city}
-> 🏘️ Kecamatan: ${item.district}
-> 🏡 Kelurahan: ${item.village}
-> 📍 Koordinat: ${item.latitude}, ${item.longitude}`;
+            const caption = `>> *Kode Pos Ditemukan!*
+> - Kode: ${item.code}
+> - Kode Pos: ${item.postal}
+> - Provinsi: ${item.province}
+>️ - Kota/Kab: ${item.city}
+>️ - Kecamatan: ${item.district}
+> - Kelurahan: ${item.village}
+> - Koordinat: ${item.latitude}, ${item.longitude}`;
 
             await conn.sendMessage(
                 m.chat,
@@ -55,7 +55,7 @@ export default {
                         {
                             name: "cta_url",
                             buttonParamsJson: JSON.stringify({
-                                display_text: "🗺️ Buka di Google Maps",
+                                display_text: "[>] Buka di Google Maps",
                                 url: link
                             })
                         }
@@ -64,8 +64,8 @@ export default {
                 { quoted: m }
             );
         } catch (err) {
-            console.error("❌ Error:", err.message);
-            await m.reply("⚠️ Terjadi kesalahan saat mengambil data kode pos.");
+            console.error("[×] Error:", err.message);
+            await m.reply("️`[!!]` Terjadi kesalahan saat mengambil data kode pos.");
         }
     }
 };

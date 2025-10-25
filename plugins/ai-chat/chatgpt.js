@@ -5,7 +5,7 @@ export default {
     settings: {
       react: true
     },
-    run: async (conn, m, { Api }) => {
+    run: async (m, { conn, Api }) => {
         const input = m.isQuoted ? m.quoted.body : m.text;
         const text = `[>] Upss Kamu tidak mengetikan pertanyaan!
 [-] Contoh: ${m.cmd} Apa itu Whiskeysoket?`

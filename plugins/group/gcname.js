@@ -7,7 +7,7 @@ const fanzbot = {
         botAdmin: true,
         admin: true
     },
-    run: async (conn, m) => {
+    run: async (m, { conn }) => {
         let input = m.isQuoted ? m.quoted?.body : m.text;
         if (input) {
             await conn.groupUpdateSubject(m.chat, input);

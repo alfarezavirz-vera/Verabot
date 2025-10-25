@@ -2,7 +2,7 @@ export default {
     name: "jadwalsolat",
     category: "info",
     command: ["jadwalsolat", "waktusolat"],
-    run: async (conn, m, { Api }) => {
+    run: async (m, { conn, Api }) => {
         if (!m.text)
             return m.reply('[#] Masukan nama kota misal "Kota samarinda"');
         try {
