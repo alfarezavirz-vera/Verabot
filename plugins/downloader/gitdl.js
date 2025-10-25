@@ -6,7 +6,7 @@ export default {
         react: true,
         loading: true
     },
-    run: async (m, {conn, Func, log }) => {
+    run: async (m, { conn, Func, log }) => {
         if (!m.text) return m.reply("Url github nya?");
         try {
             const regex =
@@ -25,7 +25,7 @@ export default {
                 contextInfo: {
                     externalAdReply: {
                         title: "Github Download || gitclone",
-                        thumbnailUrl: cfg.ads.imageUrl
+                        thumbnailUrl: cfg.bot.thumb
                     }
                 }
             });
