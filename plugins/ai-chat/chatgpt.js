@@ -1,11 +1,11 @@
-export default {
-    name: "chatgpt",
-    category: "ai-chat",
-    command: ["chatgpt", "gpt"],
-    settings: {
+export default class ChatGPT {
+    name = "chatgpt";
+    category = "ai-chat";
+    command = ["chatgpt", "gpt"];
+    settings = {
       react: true
-    },
-    run: async (m, { conn, Api }) => {
+    };
+    async run(m, { conn, Api }) {
         const input = m.isQuoted ? m.quoted.body : m.text;
         const text = `[>] Upss Kamu tidak mengetikan pertanyaan!
 [-] Contoh: ${m.cmd} Apa itu Whiskeysoket?`

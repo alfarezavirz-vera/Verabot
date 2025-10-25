@@ -183,18 +183,13 @@ export default async function Command(conn, m) {
 
                         global.cooldowns[key] = now;
                     }
-                    if (plugin.settings?.react)m.react(
+                    if (plugin.settings?.react) {
+                    	 const siti = await ctx.Func.fetchJson("https://raw.githubusercontent.com/Adzy-xyz/db/refs/heads/main/iha.json")
+                    	m.react(
                             m.chat,
-                            Func.pickRandom([
-                                "⏰",
-                                "⏱️",
-                                "⏳",
-                                "🗿",
-                                "🙏🏻",
-                                "😅",
-                                "🤡"
-                            ])
+                            Func.pickRandom(siti)
                         );
+                    }
                     if (plugin.settings?.loading) m.reply(cfg.mess.wait);
 
                     plugin.run(m, ctx).then(async a => {

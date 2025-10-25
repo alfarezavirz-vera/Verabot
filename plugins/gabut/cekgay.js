@@ -1,12 +1,14 @@
-export default {
-    name: "cekgay",
-    category: "gabut",
-    command: ["cekgay"],
-    settings: {
+class Cmd {
+	constructor() {
+   this. name="cekgay"
+ this.   category="gabut"
+ this.   command=["cekgay"]
+ this.   settings= {
         group: true
-    },
-    cooldown: 8,
-    run: async (m, {conn, Func }) => {
+    }
+    cooldown: 8
+	}
+    run= async (m, {conn, Func }) => {
         const user = m.isQuoted
             ? m.quoted.sender
             : m.mentions && m.mentions[0]
@@ -44,3 +46,5 @@ export default {
         m.reply(resp);
     }
 };
+
+export default new Cmd()

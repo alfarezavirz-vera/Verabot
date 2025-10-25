@@ -1,12 +1,12 @@
-export default {
-    name: "npmdl",
-    category: "downloader",
-    command: ["npmdl"],
-    settings: {
+export default class NpmDL {
+    name= "npmdl"
+    category= "downloader"
+    command= ["npmdl"]
+    settings= {
         loading: true
-    },
-    cooldown: 15,
-    run: async (m, { conn, Api }) => {
+    }
+    cooldown= 15
+    async run(m, { conn, Api }) {
         if (!m.text)
             return m.reply(
                 "[×] Failed to download silab masukan query\n> Misal: naruyaizumi"

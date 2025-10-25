@@ -1,8 +1,8 @@
-export default {
-    name: "script",
-    category: "main",
-    command: ["sc", "script"],
-    run: async (m, { conn,  Func }) => {
+export default class Scrip {
+    name = "script";
+    category = "main";
+    command =["sc", "script"];
+     async run (m, { conn,  Func }) {
         try {
             const res = await Func.fetchJson(
                 "https://api.github.com/repos/Adzy-xyz/Fanzbot"

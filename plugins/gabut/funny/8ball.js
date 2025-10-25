@@ -29,4 +29,4 @@ const Lapanball = {
     }
 };
 
-export default { Lapanball };
+export default Lapanball

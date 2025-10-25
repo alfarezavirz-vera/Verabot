@@ -5,7 +5,7 @@ export default {
   settings: {
       react: true
     },
-  run: async ( m, {conn, Api, Func }) => {
+  async run( m, {conn, Api, Func }) {
         const text = `[>] Upss Kamu tidak mengetikan pertanyaan!
 [-] Contoh: ${m.cmd} Apa itu Whiskeysoket?`
         if (!m.text) return m.reply(text);

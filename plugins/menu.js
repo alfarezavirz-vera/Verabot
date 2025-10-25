@@ -5,7 +5,7 @@ export default {
     name: "menu",
     category: "main",
     command: ["menu", "adzy"],
-    run: async (m, { conn,  Func }) => {
+    async run(m, { conn,  Func }) {
         let grouped = {};
         let jirlah = m.args[0] ? m.args[0].toLowerCase() : null;
 

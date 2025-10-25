@@ -1,10 +1,10 @@
 // Credits: Vrypt: EternityBot
 import { fetch } from 'undici'
-export default {
-    name: "animesearch",
-    category: "anime",
-    command: ["animesearch", "anime-s"],
-    run: async (m, { conn }) => {
+export default class Cmd {
+    name= "animesearch"
+    category= "anime"
+    command= ["animesearch", "anime-s"]
+    async run(m, { conn }){
         const query = m.text.trim();
         if (!query)
             return m.reply(

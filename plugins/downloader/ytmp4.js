@@ -2,14 +2,16 @@
 FanzCode();
 **/
 
-export default {
-    name: "ytmp4",
-    category: "downloader",
-    command: ["ytmp4", "ytv"],
-    settings: {
-        react: true
-    },
-    run: async (m, { conn,Api, Func }) => {
+class YtMP4 {
+    constructor() {
+        this.name = "ytmp4";
+        this.category = "downloader";
+        this.command = ["ytmp4", "ytv"];
+        this.settings = {
+            react: true
+        };
+    }
+    run = async (m, { conn, Api, Func }) => {
         if (!m.text) return m.reply("[!] Imvalids Url! masukan url yutub nya");
         await m.reply("Sabar yaa");
         let api = await Api.request("ryhar", "/api/downloader/youtube-video", {
@@ -29,5 +31,7 @@ export default {
             },
             caption: "Done terdownload puh"
         });
-    }
-};
+    };
+}
+
+export default new YtMP4()

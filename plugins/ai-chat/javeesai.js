@@ -1,11 +1,13 @@
-export default {
-    name: "javeesai",
-    category: "ai-chat",
-    command: ["javeesai", "jai"],
-    settings: {
+class Cmd {
+	constructor() {
+    name= "javeesai"
+    category="ai-chat"
+    command= ["javeesai", "jai"]
+    settings={
         react: true
-    },
-    run: async (m, { conn,Api }) => {
+    }
+	}
+    run= async (m, { conn,Api }) => {
         let input = m.isQuoted ? m.quoted?.body : m.text;
         if (!input) return m.reply("[×] Sila katakan sesuastu...");
 
@@ -24,3 +26,5 @@ export default {
         }
     }
 };
+
+export default new Cmd()

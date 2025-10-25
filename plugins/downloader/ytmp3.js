@@ -2,14 +2,16 @@
 FanzCode();
 **/
 
-export default {
-    name: "ytmp3",
-    category: "downloader",
-    command: ["ytmp3", "yta"],
-    settings: {
-        react: true
-    },
-    run: async (m, {conn ,Api }) => {
+class Cmd {
+    constructor() {
+        this.name = "ytmp3";
+        this.category = "downloader";
+        this.command = ["ytmp3", "yta"];
+        this.settings = {
+            react: true
+        };
+    }
+    run = async (m, { conn, Api }) => {
         if (!m.text) return m.reply("[!] Imvalids Url! masukan url yutub nya");
         await m.reply("Sabar yaa");
         const endpoint = "/api/downloader/youtube-audio";
@@ -31,5 +33,7 @@ export default {
             },
             mimetype: "audio/mpeg"
         });
-    }
-};
+    };
+}
+
+export default new Cmd();
