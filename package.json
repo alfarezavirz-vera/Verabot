@@ -25,7 +25,7 @@
     "imports": {
         "#lib/*": "./lib/*",
         "#scrape/*": "./scrape/src/*",
-        "#client": "./lib/client/*",
+        "#client/*": "./lib/client/*",
         "#jembut": "./lib/buttonArray/button.js"
     },
     "keywords": [
