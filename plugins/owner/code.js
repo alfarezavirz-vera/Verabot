@@ -55,7 +55,8 @@ export default Cmd;`;
         this.command = [""];
         this.settings = {};
         this.cooldown = 0;
-        run = async (m, { conn }) => {
+    }
+    run = async (m, { conn }) => {
             //isi kode nya
         };
     }
@@ -72,35 +73,35 @@ export default new Cmd();
                     {
                         name: "cta_copy",
                         buttonParamsJson: JSON.stringify({
-                            display_text: "[+] Copy (Ori)",
+                            display_text: "Copy (Ori)",
                             copy_code: code
                         })
                     },
                     {
                         name: "cta_copy",
                         buttonParamsJson: JSON.stringify({
-                            display_text: "[+] Kode tipe 2",
+                            display_text: "Kode tipe 2",
                             copy_code: code2
                         })
                     },
                     {
                         name: "cta_copy",
                         buttonParamsJson: JSON.stringify({
-                            display_text: "[+] export default class",
+                            display_text: "export default class",
                             copy_code: code3
                         })
                     },
                     {
                         name: "cta_copy",
                         buttonParamsJson: JSON.stringify({
-                            display_text: "[+] Class",
+                            display_text: "Class",
                             copy_code: code4
                         })
                     },
                     {
                         name: "cta_copy",
                         buttonParamsJson: JSON.stringify({
-                            display_text: "[+] Const",
+                            display_text: "Const",
                             copy_code: conss
                         })
                     }
@@ -111,4 +112,4 @@ export default new Cmd();
     }
 };
 
-export default Cmd
+export default Cmd;

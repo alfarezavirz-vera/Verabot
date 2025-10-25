@@ -11,6 +11,7 @@ import {
 import { Boom } from "@hapi/boom";
 import fs from "fs";
 import pino from "pino";
+import {initFunction} from "buttons-warpper";
 
 import { serialize, Client } from "#client/export.js";
 import log from "#lib/logger.js";
@@ -52,7 +53,7 @@ async function startWA() {
         markOnlineOnConnect: false,
         generateHighQualityLinkPreview: true
     });
-
+    await initFunction(conn);
     await Client(conn);
 
     if (!conn.chats) conn.chats = {};

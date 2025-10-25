@@ -1,11 +1,11 @@
 class Cmd {
 	constructor() {
-    name= "javeesai"
-    category="ai-chat"
-    command= ["javeesai", "jai"]
-    settings={
-        react: true
-    }
+    this.name = "javeesai";
+        this.category = "ai-chat";
+        this.command = ["javeesai", "jai"];
+        this.settings = {
+            react: true
+        };
 	}
     run= async (m, { conn,Api }) => {
         let input = m.isQuoted ? m.quoted?.body : m.text;

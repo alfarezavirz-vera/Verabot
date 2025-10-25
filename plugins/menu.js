@@ -60,7 +60,7 @@ export default {
             mani += "—–—–—–—–—–—–—–—–—–—–—–—–—\n";
 
             mani += `Silah pencet button di bawah untuk lihat menu yang di pins`;
-            conn.sendMessage(
+            conn.sendButtons(
                 m.chat,
                 {
                     footer: cfg.bot.footer,
