@@ -11,7 +11,6 @@ import {
 import { Boom } from "@hapi/boom";
 import fs from "fs";
 import pino from "pino";
-import {initFunction} from "buttons-warpper";
 
 import { serialize, Client } from "#client/export.js";
 import log from "#lib/logger.js";
@@ -26,13 +25,8 @@ global.plugins = loader.plugins;
 global.db = new Database(cfg.db + ".json");
 await db.init();
 
-const { default: Scrape } = await import(process.cwd() + "/scrape/index.js");
-global.scrape = new Scrape(process.cwd() + "/scrape/src");
-await scrape.watch();
-
 setInterval(async () => {
     await db.save();
-    await scrape.load();
 }, 2000);
 
 async function startWA() {
@@ -53,7 +47,7 @@ async function startWA() {
         markOnlineOnConnect: false,
         generateHighQualityLinkPreview: true
     });
-    await initFunction(conn);
+    
     await Client(conn);
 
     if (!conn.chats) conn.chats = {};
@@ -105,6 +99,11 @@ async function startWA() {
                     break;
                 case 405:
                     log.warn("Session not logged in. Recreate session...");
+                    fs.rmSync("./sessions", { recursive: true, force: true });
+                    await startWA();
+                    break;
+                case 500:
+                    log.warn("Warning kode 500 tanda nya pinjam dulu 500, xixixi");
                     fs.rmSync("./sessions", { recursive: true, force: true });
                     await startWA();
                     break;

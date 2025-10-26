@@ -38,17 +38,7 @@ export default Cmd;`;
 		//logic nya
 	}
 }`;
-        let code3 = `export default class Cmd {
-    name: '',
-	category: '',
-	command: [''],
-	settings: {},
-	cooldown: 0,
-    async run(m, { conn }) {
-		//logic nya
-	}
-}`;
-        let code4 = `class Cmd {
+        let code3 = `class Cmd {
     constructor() {
         this.name = "";
         this.category = "";
@@ -60,9 +50,7 @@ export default Cmd;`;
             //isi kode nya
         };
     }
-}
-export default new Cmd();
-`;
+export default new Cmd();`;
 
         conn.sendMessage(
             m.chat,
@@ -87,15 +75,8 @@ export default new Cmd();
                     {
                         name: "cta_copy",
                         buttonParamsJson: JSON.stringify({
-                            display_text: "export default class",
-                            copy_code: code3
-                        })
-                    },
-                    {
-                        name: "cta_copy",
-                        buttonParamsJson: JSON.stringify({
                             display_text: "Class",
-                            copy_code: code4
+                            copy_code: code3
                         })
                     },
                     {

@@ -1,4 +1,4 @@
-import igdl from "#scrape/Instagram.js";
+import {igdl} from "#scrape";
 
 export default {
     name: "instagram",

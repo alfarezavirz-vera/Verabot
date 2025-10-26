@@ -6,7 +6,7 @@ export default {
         react: true,
         loading: true
     },
-    run: async (m, { conn, Func, log }) => {
+    run: async (m, {conn, Func, log }) => {
         if (!m.text) return m.reply("Url github nya?");
         try {
             const regex =

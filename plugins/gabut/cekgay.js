@@ -6,7 +6,7 @@ class Cmd {
  this.   settings= {
         group: true
     }
-    cooldown: 8
+    this.cooldown= 8
 	}
     run= async (m, {conn, Func }) => {
         const user = m.isQuoted

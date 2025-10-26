@@ -1,13 +1,15 @@
-export default {
-    name: "mediafire",
-    category: "downloader",
-    command: ["mediafire", "mfdl"],
-    settings: {
-        limit: true,
-        loading: true
-    },
-    cooldown: 15,
-    run: async (m, { conn,Api, Func }) => {
+class Cmd {
+    constructor() {
+        this.name = "mediafire";
+        this.category = "downloader";
+        this.command = ["mediafire", "mfdl"];
+        this.settings = {
+            limit: true,
+            loading: true
+        };
+        this.cooldown = 15;
+    }
+    run = async (m, { conn, Api, Func }) => {
         if (!m.text)
             return m.reply(
                 "[×] Failed to dowload! Silakan masukann link mediafire"
@@ -37,5 +39,6 @@ export default {
         } catch (err) {
             m.reply(err.message);
         }
-    }
-};
+    };
+}
+export default new Cmd();

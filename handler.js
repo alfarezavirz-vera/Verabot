@@ -86,7 +86,6 @@ export default async function Command(conn, m) {
         isAdmin = false; // false = Misalnya bot gak punya role admin di private message
         isBotAdmin = false; // true = Misalnya bot selalu dianggap admin di private message
     }
-    const Scrape = await scrape.list();
     const isPrems = db.list().user[m.sender].premium.status;
 
     cron.schedule("* * * * *", () => {
@@ -110,8 +109,7 @@ export default async function Command(conn, m) {
         isAdmin,
         isBotAdmin,
         isPrems,
-        log,
-        Scrape
+        log
     };
 
     for (const plugin of Object.values(plugins)) {

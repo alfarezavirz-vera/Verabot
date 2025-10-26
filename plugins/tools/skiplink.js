@@ -1,3 +1,5 @@
+import { TutwuriBypassClient } from "#scrape";
+
 const handler = {
     name: "skiplink",
     category: "tools",
@@ -5,15 +7,14 @@ const handler = {
     settings: {
         loading: true
     },
-    run: async (m, { conn,  Scrape, Func }) => {
+    run: async (m, { conn, Func }) => {
         if (!m.text)
             return m.reply(`[>] Penggunaan Salah:
 > ${m.cmd} url
 > ${m.cmd} https:/sfl.gl/xx`);
-        let args = m.text
+        let args = m.text;
         try {
-            let udah = (await Scrape.skiplink).default;
-            let url = await udah.get(args);
+            let url = await TutwuriBypassClient.get(m.text);
 
             const interactiveButtons = [
                 {

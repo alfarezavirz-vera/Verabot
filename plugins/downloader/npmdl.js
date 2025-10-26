@@ -1,11 +1,11 @@
-export default class NpmDL {
-    name = "npmdl";
-    category = "downloader";
-    command = ["npmdl"];
-    settings = {
+export default  {
+    name :"npmdl",
+    category : "downloader",
+    command : ["npmdl"],
+    settings :{
         loading: true
-    };
-    cooldown = 15;
+    },
+    cooldown : 15,
     async run(m, { conn, Api }) {
         if (!m.text)
             return m.reply(

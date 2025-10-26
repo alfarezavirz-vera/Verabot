@@ -1,4 +1,4 @@
-// import shorturl from "#scrape/abelashort.js";
+import { shorturl } from "#scrape";
 
 export default {
     name: "shorturl",
@@ -12,8 +12,7 @@ export default {
         const url = Func.isUrl(m.text.trim());
         if (!url) return m.reply("[!] Masukin link yg nak di short");
         try {
-        	const result = await (await Scrape.abelashort).default(m.text);
-           // const result = await Scrape.abelashort(m.text);
+            const result = await shorturl(m.text);
             conn.sendMessage(
                 m.chat,
                 {

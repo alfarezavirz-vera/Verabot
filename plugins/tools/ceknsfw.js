@@ -1,4 +1,4 @@
-import cekNsfw from "#scrape/ceknsfw.js";
+import {cekNsfw} from "#scrape";
 
 export default {
     name: "ceknsfw",
