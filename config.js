@@ -12,7 +12,11 @@ global.qtext = {
 	},
 	message: { extendedTextMessage: { text: "Simple WeA bot by Dzy" } },
 };
-
+global.readws = {
+	active: true,
+	react: false,
+	emoji: ["🔥", "💀", "☠️", "🥀", "🥶"],
+}
 /*============= Konfigurasi =============*/
 global.cfg = {
 	pairing: 962796121703 /* [ Nomor bot ] */,
