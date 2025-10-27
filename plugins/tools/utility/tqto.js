@@ -4,7 +4,7 @@ export default {
     command: ["tqto"],
     run: async (m, { conn }) => {
         let res = `Terimakasih pada:
-> AgusXzz 
+> AgusXzz (basebot) 
 > Purrbits
 > Allah
 > Ortu

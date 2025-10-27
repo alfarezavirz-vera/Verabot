@@ -1,4 +1,4 @@
-import {igdl} from "#scrape";
+import { igdl } from "#scrape";
 
 export default {
     name: "instagram",
@@ -12,9 +12,7 @@ export default {
             const parseUrl = input.match(regex)?.[0];
 
             if (!parseUrl) {
-                return m.reply(
-                	"[!] Masukan url Instagramnya"
-                );
+                return m.reply("[!] Masukan url Instagramnya");
             }
 
             const res = await igdl(parseUrl);
