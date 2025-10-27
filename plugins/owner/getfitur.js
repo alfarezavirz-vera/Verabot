@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+import fs from "fs";
 
 class Cmd {
 	constructor() {
@@ -7,19 +7,27 @@ class Cmd {
 		this.command = ["getfitur", "getf"];
 		this.settings = { owner: true };
 	}
+
 	run = async (m, { conn }) => {
-		if (!m.text.trim()) return m.reply("[!] Masukan path untuk get fitur");
+		const input = m.text.trim();
+		if (!input) return m.reply("[!] Masukan nama file fitur");
+
+		const path = `./plugins/${input}.js`;
+
 		try {
-			let path = "./plugins" + m.text.trim() + ".js";
-			m.reply({
-				decument: path,
-				caption: "Done",
-				mimetype: "application/js",
-				fileName: path,
-			});
+			if (!fs.existsSync(path)) return m.reply("[!] File tidak ditemukan");
+
+			await conn.sendMessage(m.chat, {
+				document: fs.readFileSync(path),
+				fileName: `${input}.js`,
+				mimetype: "application/javascript",
+				caption: "Done"
+			}, { quoted: m });
+
 		} catch (err) {
-			m.reply("Err: \n" + err.message);
+			m.reply("Err:\n" + err.message);
 		}
 	};
 }
+
 export default new Cmd();

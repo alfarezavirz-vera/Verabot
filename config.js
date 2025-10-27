@@ -14,7 +14,7 @@ global.qtext = {
 };
 
 /*============= Konfigurasi =============*/
-global.cfg = Object.freeze({
+global.cfg = {
 	pairing: 962796121703 /* [ Nomor bot ] */,
 	code: "53MVACK5" /* [ Kode pairing mu ] */,
 	db: "siti-stabilizer" /* [ Buat tarok database ] */,
@@ -35,7 +35,7 @@ global.cfg = Object.freeze({
 		prefix: ["/", "#", "?", ".", "~"] /* [ Mendukubg multi pretix ] */,
 		thumb: readFileSync("./media/bot.jpg") /* [ Atut aja sesuka lu ] */,
 		thumbvid: "" /* [ Buat versi video nya bisa pke url atau buffer ] */,
-		audio: readFileSync("./media/cakepp.mp3"),
+		audio: readFileSync("./media/pedih.mp3"),
 		self: false /* [ default status bot] */,
 		on: true,
 	},
@@ -64,7 +64,7 @@ global.cfg = Object.freeze({
 		ryhar: "p2pe75mrois182180i6y" /* [ buat naro macam macam apiKey taro di sini aja biar enakh ] */,
 		gemini: "AIzaSyAFZuYs9iu4lRrR_cWY8jelar9CUMyvL5o" /* [ Ambil di ai.google.studio katanya ] */,
 	},
-});
+};
 
 // Hot reload config.js ketika ada perubahan
 const file = fileURLToPath(import.meta.url);

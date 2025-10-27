@@ -1,4 +1,5 @@
-import buttons from "#jembut";
+import buttons from "#conn/button.js";
+import { contextInfo } from "#conn/contextInfo.js";
 const { interAktif, rowSalah } = buttons;
 
 export default {
@@ -36,19 +37,6 @@ export default {
 			`| Command  : "${m.cmd}"`,
 			`---------------------------`
 		].join("\n");
-
-		const contextInfo = {
-			mentionedJid: [...conn.parseMention(mani)],
-			externalAdReply: {
-				title: cfg.ads.title,
-				body: cfg.ads.body,
-				thumbnail: cfg.bot.thumb,
-				sourceUrl: cfg.ads.source,
-				mediaType: 1,
-				previewType: "VIDEO",
-				renderLargerThumbnail: true
-			}
-		};
 
 		// Menu Utama
 		if (!jirlah) {
@@ -92,7 +80,10 @@ export default {
 				mani += `---------------------------\n\n`;
 			}
 
-			m.reply({ text: mani, contextInfo }, { quoted: qtext });
+			m.reply(
+				{ text: mani, contextInfo: contextInfo(mani) },
+				{ quoted: qtext }
+			);
 		}
 
 		// Menu per kategori
@@ -105,7 +96,7 @@ export default {
 				mani += ` - ${m.prefix}${hitem.name}\n`;
 			}
 
-			m.reply({ text: mani, contextInfo }, { quoted: qtext });
+			m.reply({ text: mani, contextInfo: contextInfo(mani) }, { quoted: qtext });
 		}
 
 		// Kategori tidak ditemukan

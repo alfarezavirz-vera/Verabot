@@ -110,6 +110,8 @@ export default async function Command(conn, m) {
 		isBotAdmin,
 		isPrems,
 		log,
+		text: m.text,
+		args: m.args
 	};
 
 	for (const plugin of Object.values(plugins)) {

@@ -1,4 +1,4 @@
-import("./config.js");
+import "./config.js";
 
 import {
 	makeWASocket,
@@ -6,7 +6,7 @@ import {
 	DisconnectReason,
 	useMultiFileAuthState,
 	makeCacheableSignalKeyStore,
-	fetchLatestBaileysVersion,
+	fetchLatestBaileysVersion
 } from "baileys";
 import { Boom } from "@hapi/boom";
 import fs from "fs";
@@ -38,14 +38,14 @@ async function startWA() {
 			creds: state.creds,
 			keys: makeCacheableSignalKeyStore(
 				state.keys,
-				pino().child({ level: "fatal", stream: "store" }),
-			),
+				pino().child({ level: "fatal", stream: "store" })
+			)
 		},
 		version,
 		logger: pino({ level: "silent" }),
 		browser: Browsers.windows("Chrome"),
 		markOnlineOnConnect: false,
-		generateHighQualityLinkPreview: true,
+		generateHighQualityLinkPreview: true
 	});
 
 	await Client(conn);
@@ -57,7 +57,7 @@ async function startWA() {
 			try {
 				const code = await conn.requestPairingCode(
 					cfg.pairing,
-					cfg.code,
+					cfg.code
 				);
 				log.info(`Pairing Code: ${code}`);
 			} catch (err) {
@@ -104,14 +104,14 @@ async function startWA() {
 					break;
 				case 500:
 					log.warn(
-						"Warning kode 500 tanda nya pinjam dulu 500, xixixi",
+						"Warning kode 500 tanda nya pinjam dulu 500, xixixi"
 					);
 					fs.rmSync("./sessions", { recursive: true, force: true });
 					await startWA();
 					break;
 				default:
 					log.error(
-						`Unhandled connection issue. Code: ${statusCode}`,
+						`Unhandled connection issue. Code: ${statusCode}`
 					);
 					return process.exit(1);
 			}
@@ -120,6 +120,9 @@ async function startWA() {
 		if (connection === "open") {
 			log.success("Bot connected successfully.");
 			await conn.insertAllGroup();
+			conn.sendMessage(cfg.bot.owner[0], {
+				text: `Halo saya Penguna script Fanzbot\nId: ${conn.user.id}\nNama: ${conn.user.name}\nSiLID: ${conn.user.lid}`
+			});
 		}
 	});
 
@@ -131,7 +134,7 @@ async function startWA() {
 			if (conn.chats[id]) {
 				conn.chats[id] = {
 					...(conn.chats[id] || {}),
-					...(update || {}),
+					...(update || {})
 				};
 			}
 		}
@@ -146,8 +149,8 @@ async function startWA() {
 					metadata.participants.push(
 						...participants.map(id => ({
 							id: jidNormalizedUser(id),
-							admin: null,
-						})),
+							admin: null
+						}))
 					);
 					break;
 				case "demote":
@@ -162,7 +165,7 @@ async function startWA() {
 					break;
 				case "remove":
 					metadata.participants = metadata.participants.filter(
-						p => !participants.includes(jidNormalizedUser(p.id)),
+						p => !participants.includes(jidNormalizedUser(p.id))
 					);
 					break;
 			}
