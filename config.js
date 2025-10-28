@@ -10,42 +10,41 @@ global.qtext = {
 		remoteJid: "status@broadcast",
 		participant: "18002428478@s.whatsapp.net"
 	},
-	message: { extendedTextMessage: { text: "Simple WeA bot by Dzy" } }
+	message: { extendedTextMessage: { text: "Simple WeA bot by Alfarz" } }
 };
 global.readsw = {
-	active: true,
+	active: false,
 	react: false,
 	emoji: ["🔥", "💀", "☠️", "🥀", "🥶"]
 };
 /*============= Konfigurasi =============*/
 global.cfg = {
-	pairing: 962796121703 /* [ Nomor bot ] */,
-	code: "53MVACK5" /* [ Kode pairing mu ] */,
-	db: "siti-stabilizer" /* [ Buat tarok database ] */,
+	pairing: 6282135288134 /* [ Nomor bot ] */,
+	code: "VERATEAM" /* [ Kode pairing mu ] */,
+	db: "beta-db" /* [ Buat tarok database ] */,
 	tz: "Asia/Jakarta" /* [ Atur aja ] */,
 	zone: "WIB",
 	user: {
 		limit: 50
 	},
 	bot: {
-		name: "FanzWeA bot" /* [ Nama bot ] */,
+		name: "VeraWeA bot" /* [ Nama bot ] */,
 		owner: [
-			"962796121703",
-			"6283899616999"
+			"6285133801810"
 		] /* [ Klo mau tambah tinggal [ ...03', '62x' ] ] */,
-		ownerUrl: "https://nefu.life/adzy" /* [ Bebas mau link apah ] */,
+		ownerUrl: "https://veracloud.biz.id/myprofile" /* [ Bebas mau link apah ] */,
 		version: global.pkg.version,
-		footer: "Fanz is My WeA bot" /* [ Well ya ] */,
+		footer: "Vera is My WeA bot" /* [ Well ya ] */,
 		prefix: ["/", "#", "?", ".", "~"] /* [ Mendukubg multi pretix ] */,
 		thumb: readFileSync("./media/bot.jpg") /* [ Atut aja sesuka lu ] */,
 		thumbvid: "" /* [ Buat versi video nya bisa pke url atau buffer ] */,
 		audio: readFileSync("./media/pedih.mp3"),
 		self: false /* [ default status bot] */,
-		on: true
+		on: false
 	},
 	ads: {
-		title: "Fanz-WeA boT",
-		body: "Fanzbot a simple WeA Bot",
+		title: "Vera-WeA boT",
+		body: "Verabot a simple WeA Bot",
 		source: "https://kua.lat/ikamLah"
 	},
 	mess: {
@@ -66,7 +65,8 @@ global.cfg = {
 	},
 	apiKey: {
 		ryhar: "p2pe75mrois182180i6y" /* [ buat naro macam macam apiKey taro di sini aja biar enakh ] */,
-		gemini: "AIzaSyAFZuYs9iu4lRrR_cWY8jelar9CUMyvL5o" /* [ Ambil di ai.google.studio katanya ] */
+		gemini: "AIzaSyAFZuYs9iu4lRrR_cWY8jelar9CUMyvL5o" /* [ Ambil di ai.google.studio katanya ] */,
+		vera: "Api_Alfarezzv"
 	}
 };
 
