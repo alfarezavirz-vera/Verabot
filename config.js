@@ -66,7 +66,7 @@ global.cfg = {
 	apiKey: {
 		ryhar: "p2pe75mrois182180i6y" /* [ buat naro macam macam apiKey taro di sini aja biar enakh ] */,
 		gemini: "AIzaSyAFZuYs9iu4lRrR_cWY8jelar9CUMyvL5o" /* [ Ambil di ai.google.studio katanya ] */,
-		vera: "Api_Alfarezzv"
+		vera: "vera_xxx" /* ambil du https://api.zteam.biz.id */
 	}
 };
 
