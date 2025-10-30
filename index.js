@@ -14,7 +14,6 @@ import pino from "pino";
 
 import { serialize, Client } from "#client/export.js";
 import log from "#lib/logger.js";
-import printMessage from "#lib/printChatLog.js";
 import PluginsLoad from "#lib/loadPlugins.js";
 import Database from "#lib/database.js";
 
