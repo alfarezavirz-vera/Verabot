@@ -1,45 +1,59 @@
+/**
+ * @author   : Adzy
+ * @filename : config.js
+ * @created  : 2025-10-29 03:32:12
+ * @version  : 1.0
+ * @description: Konfigurasi bot ada di sini
+ */
+
 import { watchFile, unwatchFile, readFileSync } from "fs";
 import { fileURLToPath } from "url";
+import rc from "#lib/function.js";
 import log from "#lib/logger.js";
 import pkg from "./package.json" with { type: "json" };
 
-// saran aja ni klo mau edit nonaktifkan bungkus kata🗿 takut comment nya ngeganggu hehe
+/* [ Paket Json ] */
 global.pkg = pkg;
-global.qtext = {
+/* [ Funtion kuoted ] */
+global.quoted = msg => ({
 	key: {
 		remoteJid: "status@broadcast",
-		participant: "18002428478@s.whatsapp.net"
+		participant: "18002428478@s.whatsapp.net
 	},
-	message: { extendedTextMessage: { text: "Simple WeA bot by Alfarz" } }
-};
+	message: { extendedTextMessage: { text: msg || "Simple WeA bot by Alfarz" } }
+});
+global.qtext = global.quoted();
+/* [ Konfigurasi readSW ] */
 global.readsw = {
 	active: false,
 	react: false,
 	emoji: ["🔥", "💀", "☠️", "🥀", "🥶"]
 };
-/*============= Konfigurasi =============*/
+
+/*[ Path audio ]*/
+let path = ["./media/pedih.mp3", "./media/lonown.mp3"];
+
+/* [ Semua Konfigurasi Anda ] */
 global.cfg = {
-	pairing: 6282135288134 /* [ Nomor bot ] */,
-	code: "VERATEAM" /* [ Kode pairing mu ] */,
-	db: "beta-db" /* [ Buat tarok database ] */,
-	tz: "Asia/Jakarta" /* [ Atur aja ] */,
+	pairing: 6282135288134,
+	code: "VERATEAM",
+	db: "database",
+	tz: "Asia/Jakarta",
 	zone: "WIB",
 	user: {
 		limit: 50
 	},
 	bot: {
-		name: "VeraWeA bot" /* [ Nama bot ] */,
-		owner: [
-			"6285133801810"
-		] /* [ Klo mau tambah tinggal [ ...03', '62x' ] ] */,
-		ownerUrl: "https://veracloud.biz.id/myprofile" /* [ Bebas mau link apah ] */,
+		name: "VeraWeA bot",
+		owner: ["6285133801810", "6282135288134"],
+		ownerUrl: "https://veracloud.biz.id/myprofie",
 		version: global.pkg.version,
-		footer: "Vera is My WeA bot" /* [ Well ya ] */,
-		prefix: ["/", "#", "?", ".", "~"] /* [ Mendukubg multi pretix ] */,
-		thumb: readFileSync("./media/bot.jpg") /* [ Atut aja sesuka lu ] */,
-		thumbvid: "" /* [ Buat versi video nya bisa pke url atau buffer ] */,
-		audio: readFileSync("./media/pedih.mp3"),
-		self: false /* [ default status bot] */,
+		footer: "Vera is My WeA bot",
+		prefix: ["/", "#", "?", ".", "~"],
+		thumb: readFileSync("./media/bot.jpg"),
+		thumbvid: "",
+		audio: readFileSync(rc.pickRandom(path)),
+		self: false,
 		on: false
 	},
 	ads: {
@@ -48,25 +62,23 @@ global.cfg = {
 		source: "https://kua.lat/ikamLah"
 	},
 	mess: {
-		wait: "`[-]` Tunggu sebentar yah, sekitar 3 tahun lagi..." /* [ Pesan tunggu ] */,
-		owner: "`[!]` Fifur khusus Owner tercintah" /* [ Pesan khusus ] */,
-		group: "`[!]` Cuma bisa di group" /* [ Pesan hanya di grup ] */,
-		admin: "`[!]` Khusus admin tersyang..." /* [ Pesan khusus admin ] */,
-		botAdmin:
-			"`[=]` Jadikan bot admin dulu..." /* [ Pesan bot harus jadi admin ] */,
-		private:
-			"`[×]` Hanya bisa di private chat" /* [ Pesan bot hanya dipakai di pc ] */,
-		premium: "`[×]` Dibuat untuk user prem" /* [ Pesan khusus premium ] */,
-		free: "`[!]` Anda user premium dilarang pakai" /* [ Ada Ada saja😅 ] */
+		wait: "`[-]` Tunggu sebentar yah, sekitar 3 tahun lagi...",
+		owner: "`[!]` Fifur khusus Owner tercintah",
+		group: "`[!]` Cuma bisa di group",
+		admin: "`[!]` Khusus admin tersyang...",
+		botAdmin: "`[=]` Jadikan bot admin dulu...",
+		private: "`[×]` Hanya bisa di private chat",
+		premium: "`[×]` Dibuat untuk user prem",
+		free: "`[!]` Anda user premium dilarang pakai"
 	},
 	s: {
-		pack: "" /* [ setiker pack ] */,
-		auth: "[!] Aku mau Makan Roti Belah Dua" /* [ Author nya ] */
+		pack: "V",
+		auth: "R"
 	},
 	apiKey: {
-		ryhar: "p2pe75mrois182180i6y" /* [ buat naro macam macam apiKey taro di sini aja biar enakh ] */,
-		gemini: "AIzaSyAFZuYs9iu4lRrR_cWY8jelar9CUMyvL5o" /* [ Ambil di ai.google.studio katanya ] */,
-		vera: "vera_xxx" /* ambil du https://api.zteam.biz.id */
+		ryhar: "p2pe75mrois182180i6y",
+		btz: "Btz-XoifQ",
+		vera: "vera-xxx"
 	}
 };
 
