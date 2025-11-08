@@ -1,4 +1,4 @@
-## Fanzbot
+## Verabot
 
 <table>
 <tr>
