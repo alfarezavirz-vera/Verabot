@@ -18,7 +18,7 @@ global.pkg = pkg;
 global.quoted = msg => ({
 	key: {
 		remoteJid: "status@broadcast",
-		participant: "18002428478@s.whatsapp.net
+		participant: "18002428478@s.whatsapp.net"
 	},
 	message: { extendedTextMessage: { text: msg || "Simple WeA bot by Alfarz" } }
 });
