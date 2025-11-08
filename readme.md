@@ -3,6 +3,11 @@
 <table>
 <tr>
 <td align="center" width="25%">
+<img src="https://github.com/alfarezavirz-vera.png" width="100px;" alt="Alfarz-vyz"/><br />
+<sub><b>Alfarz-vyz</b></sub><br />
+<sub>Owner-Verabot</sub>
+</td>
+<td align="center" width="25%">
 <img src="https://github.com/Adzy-xyz.png" width="100px;" alt="Adzy-xyz"/><br />
 <sub><b>Adzy-xyz</b></sub><br />
 <sub>Devloper</sub>
